@@ -1,0 +1,2253 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ED JAYMAR B. PILAPIL — Data Analyst, Full-Stack Developer &amp; AI-Augmented Builder</title>
+    <meta name="description" content="Interactive Swiss-Architectural and Cyber-Schematic portfolio of Ed Jaymar B. Pilapil — Data Analyst at Ubest Development Inc., BSIT Magna Cum Laude, Full-Stack &amp; IoT Engineer.">
+
+    <!-- Google Fonts: Syne (Architectural Display), Plus Jakarta Sans (Clean Body), JetBrains Mono (Telemetry/Code) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['"Syne"', 'sans-serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        alabaster: '#F8F9FA',
+                        obsidian: '#0B0F17',
+                        deepspace: '#070B12',
+                        cobalt: '#02396E',
+                        cyanpulse: '#0284C7',
+                        skywire: '#38BDF8',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* ==========================================================================
+           DESIGN TOKENS — SWISS ARCHITECTURAL LIGHT & CAD X-RAY DARK MODE
+           ========================================================================== */
+        :root {
+            --bg-canvas: #F8F9FA;
+            --bg-surface: #FFFFFF;
+            --bg-elevated: #F1F4F8;
+            --text-ink: #0B0F17;
+            --text-muted: #525E70;
+            --border-hairline: #E2E6ED;
+            --border-strong: #CBD5E1;
+            --accent-primary: #02396E;
+            --accent-secondary: #0284C7;
+            --accent-glow: rgba(2, 57, 110, 0.08);
+            --grid-line: rgba(2, 57, 110, 0.045);
+            --crosshair-color: rgba(2, 57, 110, 0.35);
+            --wire-primary: #02396E;
+            --wire-secondary: #0284C7;
+        }
+
+        html.cad-xray {
+            --bg-canvas: #070B12;
+            --bg-surface: #0C121E;
+            --bg-elevated: #111927;
+            --text-ink: #F1F5F9;
+            --text-muted: #94A3B8;
+            --border-hairline: rgba(56, 189, 248, 0.18);
+            --border-strong: rgba(56, 189, 248, 0.38);
+            --accent-primary: #38BDF8;
+            --accent-secondary: #0EA5E9;
+            --accent-glow: rgba(56, 189, 248, 0.12);
+            --grid-line: rgba(56, 189, 248, 0.075);
+            --crosshair-color: rgba(56, 189, 248, 0.65);
+            --wire-primary: #38BDF8;
+            --wire-secondary: #0EA5E9;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-canvas);
+            color: var(--text-ink);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            transition: background-color 0.45s cubic-bezier(0.22, 1, 0.36, 1), color 0.35s ease;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Subtle Architectural Blueprint Grid Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background-image:
+                linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+            background-size: 48px 48px;
+            opacity: 0.7;
+            transition: opacity 0.45s ease;
+        }
+
+        html.cad-xray body::before {
+            opacity: 1;
+            background-size: 40px 40px;
+        }
+
+        /* Semantic Utility Surfaces */
+        .surface-card {
+            background-color: var(--bg-surface);
+            transition: background-color 0.4s ease, border-color 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+        }
+
+        .surface-elevated {
+            background-color: var(--bg-elevated);
+        }
+
+        .hairline {
+            border-color: var(--border-hairline);
+        }
+
+        .hairline-strong {
+            border-color: var(--border-strong);
+        }
+
+        .text-muted {
+            color: var(--text-muted);
+        }
+
+        .text-primary-accent {
+            color: var(--accent-primary);
+        }
+
+        .text-secondary-accent {
+            color: var(--accent-secondary);
+        }
+
+        .bg-primary-accent {
+            background-color: var(--accent-primary);
+        }
+
+        /* CAD X-Ray Corner Crosshair Frame Markers */
+        .cad-frame {
+            position: relative;
+        }
+
+        .cad-frame::before,
+        .cad-frame::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            z-index: 5;
+        }
+
+        .cad-frame::before {
+            top: -1px;
+            left: -1px;
+            border-top: 1.5px solid var(--crosshair-color);
+            border-left: 1.5px solid var(--crosshair-color);
+        }
+
+        .cad-frame::after {
+            bottom: -1px;
+            right: -1px;
+            border-bottom: 1.5px solid var(--crosshair-color);
+            border-right: 1.5px solid var(--crosshair-color);
+        }
+
+        html.cad-xray .cad-frame::before,
+        html.cad-xray .cad-frame::after,
+        .cad-frame:hover::before,
+        .cad-frame:hover::after {
+            opacity: 1;
+        }
+
+        /* ==========================================================================
+           DUAL-LAYER KINETIC ROLLING TYPOGRAPHY
+           ========================================================================== */
+        .roll-link {
+            position: relative;
+            display: inline-flex;
+            overflow: hidden;
+            vertical-align: top;
+            line-height: 1.15;
+        }
+
+        .roll-link > span {
+            display: block;
+            transition: transform 0.36s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .roll-link > span:nth-child(2) {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            color: var(--accent-secondary);
+        }
+
+        .roll-link:hover > span:nth-child(1),
+        .group:hover .roll-link > span:nth-child(1) {
+            transform: translateY(-100%);
+        }
+
+        .roll-link:hover > span:nth-child(2),
+        .group:hover .roll-link > span:nth-child(2) {
+            transform: translateY(-100%);
+        }
+
+        /* ==========================================================================
+           HERO LINE CLIP REVEAL & SCROLL REVEAL
+           ========================================================================== */
+        .clip-mask {
+            display: block;
+            overflow: hidden;
+        }
+
+        .clip-line {
+            display: block;
+            transform: translateY(105%);
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body.loaded .clip-line {
+            transform: translateY(0%);
+        }
+
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal-up.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==========================================================================
+           SUB-SECOND MECHANICAL PRELOADER CURTAIN
+           ========================================================================== */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background-color: #070B12;
+            color: #F8F9FA;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1.75rem;
+            transition: transform 0.65s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.45s ease;
+        }
+
+        #preloader.dismissed {
+            transform: translateY(-100%);
+            pointer-events: none;
+        }
+
+        /* ==========================================================================
+           SVG PACKET FLOW ANIMATION (DOSSIER SCHEMATICS)
+           ========================================================================== */
+        .svg-packet-flow {
+            stroke-dasharray: 6 6;
+            animation: packetStream 1.15s linear infinite;
+        }
+
+        @keyframes packetStream {
+            to {
+                stroke-dashoffset: -24;
+            }
+        }
+
+        /* ==========================================================================
+           FLOATING SPRING PREVIEW PORTAL & SLIDE-OVER DRAWER
+           ========================================================================== */
+        #hover-portal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 340px;
+            pointer-events: none;
+            z-index: 60;
+            opacity: 0;
+            transform: translate3d(-999px, -999px, 0) scale(0.92);
+            transition: opacity 0.25s ease;
+            will-change: transform, opacity;
+        }
+
+        #hover-portal.visible {
+            opacity: 1;
+        }
+
+        #dossier-backdrop {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+        }
+
+        #dossier-backdrop.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #dossier-drawer {
+            transform: translateX(100%);
+            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        #dossier-drawer.open {
+            transform: translateX(0%);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-strong);
+            border-radius: 9999px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-secondary);
+        }
+    </style>
+</head>
+<body class="selection:bg-cyanpulse selection:text-white">
+
+    <!-- ==========================================================================
+         00. SUB-SECOND MECHANICAL PRELOADER
+         ========================================================================== -->
+    <div id="preloader" aria-hidden="true">
+        <div class="flex items-center justify-between font-mono text-xs tracking-widest text-slate-400">
+            <span>SYS.BOOT // ED_JAYMAR_PILAPIL</span>
+            <span>CEBU_CITY_PH [10.3157° N]</span>
+        </div>
+
+        <div class="max-w-xl w-full mx-auto space-y-4">
+            <div class="flex items-baseline justify-between font-mono">
+                <span class="text-xs uppercase tracking-widest text-sky-400">INITIALIZING SCHEMATIC</span>
+                <span id="preloader-counter" class="text-4xl sm:text-6xl font-bold tracking-tight text-white">000%</span>
+            </div>
+            <div class="w-full h-[2px] bg-slate-800 overflow-hidden rounded-full">
+                <div id="preloader-bar" class="h-full bg-sky-400 w-0 transition-all duration-75"></div>
+            </div>
+        </div>
+
+        <div class="flex items-center justify-between font-mono text-[11px] text-slate-500">
+            <span>DATA ANALYST • FULL-STACK • IOT • AI</span>
+            <span>CMD/CTRL + K FOR X-RAY</span>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         01. STICKY ARCHITECTURAL HEADER & LIVE TELEMETRY HUD
+         ========================================================================== -->
+    <header class="sticky top-0 z-40 backdrop-blur-md bg-[var(--bg-canvas)]/85 border-b hairline transition-colors">
+        <div class="max-w-6xl mx-auto px-4 sm:px-8 h-16 flex items-center justify-between gap-3">
+            <!-- Brand Monogram + Name -->
+            <a href="#top" class="flex items-center gap-3 group focus:outline-none">
+                <div class="w-8 h-8 rounded-lg border hairline-strong surface-card flex items-center justify-center font-mono text-xs font-bold text-primary-accent group-hover:border-cyanpulse transition-colors">
+                    EJP
+                </div>
+                <div class="leading-tight">
+                    <div class="font-display font-bold text-xs sm:text-sm tracking-tight uppercase">ED JAYMAR B. PILAPIL</div>
+                    <div class="font-mono text-[10px] text-muted hidden sm:block">CEBU CITY, PH • <span id="cebu-clock">--:--:-- PHT</span></div>
+                </div>
+            </a>
+
+            <!-- Navigation Links (Desktop) -->
+            <nav class="hidden md:flex items-center gap-7 font-mono text-xs uppercase tracking-wider">
+                <a href="#works" class="roll-link py-1 font-medium">
+                    <span>Works (14)</span>
+                    <span>Works (14)</span>
+                </a>
+                <a href="#capabilities" class="roll-link py-1 font-medium">
+                    <span>Capabilities</span>
+                    <span>Capabilities</span>
+                </a>
+                <a href="#experience" class="roll-link py-1 font-medium">
+                    <span>Experience</span>
+                    <span>Experience</span>
+                </a>
+                <a href="#contact" class="roll-link py-1 font-medium">
+                    <span>Contact</span>
+                    <span>Contact</span>
+                </a>
+            </nav>
+
+            <!-- Right Telemetry Controls: Audio Toggle + CAD X-Ray Mode -->
+            <div class="flex items-center gap-2">
+                <!-- Live Cursor Coordinates Pill (Desktop) -->
+                <div class="hidden lg:flex items-center gap-2 px-2.5 py-1.5 rounded-lg border hairline surface-card font-mono text-[10px] text-muted">
+                    <span class="w-1.5 h-1.5 rounded-full bg-cyanpulse"></span>
+                    <span id="hud-coords">X:0000 Y:0000</span>
+                </div>
+
+                <!-- Tactile Micro-Audio Toggle (Muted by default) -->
+                <button type="button" id="audio-toggle" aria-label="Toggle tactile click sound" title="Toggle synthesized UI audio"
+                        class="w-9 h-9 rounded-lg border hairline surface-card flex items-center justify-center font-mono text-xs text-muted hover:text-primary-accent hover:border-cyanpulse transition-colors">
+                    <span id="audio-icon">🔇</span>
+                </button>
+
+                <!-- CAD X-RAY Mode Toggle -->
+                <button type="button" id="xray-toggle" title="Shortcut: Cmd/Ctrl + K"
+                        class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border hairline-strong surface-card font-mono text-[11px] font-bold uppercase tracking-wider hover:border-cyanpulse transition-all">
+                    <span id="xray-dot" class="w-2 h-2 rounded-full bg-cobalt transition-colors"></span>
+                    <span id="xray-label">CAD X-RAY: OFF</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="top" class="relative z-10">
+
+        <!-- ==========================================================================
+             02. HERO SECTION — SWISS EDITORIAL + INTERACTIVE 3D WIREFRAME CORE
+             ========================================================================== -->
+        <section class="max-w-6xl mx-auto px-4 sm:px-8 pt-14 pb-20 sm:pt-20 sm:pb-28">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+
+                <!-- Left 7 Cols: Editorial Identity & Discipline Morph Controls -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex flex-wrap items-center gap-2 px-3 py-1.5 rounded-full border hairline surface-card font-mono text-[11px] uppercase tracking-wider text-muted">
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyanpulse opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-cyanpulse"></span>
+                        </span>
+                        <span>Data Analyst @ Ubest Development Inc. • BSIT Magna Cum Laude</span>
+                    </div>
+
+                    <h1 class="font-display font-extrabold text-3xl sm:text-5xl lg:text-[54px] leading-[1.03] tracking-tight uppercase">
+                        <span class="clip-mask"><span class="clip-line" style="transition-delay: 0.05s;">DATA ANALYST,</span></span>
+                        <span class="clip-mask"><span class="clip-line text-primary-accent" style="transition-delay: 0.14s;">FULL-STACK DEV</span></span>
+                        <span class="clip-mask"><span class="clip-line" style="transition-delay: 0.23s;">&amp; AI BUILDER<span class="text-secondary-accent">.</span></span></span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-muted max-w-xl leading-relaxed">
+                        I’m <strong class="text-[var(--text-ink)] font-semibold">Ed Jaymar B. Pilapil</strong>—a <span class="text-primary-accent font-semibold">Magna Cum Laude</span> BS Information Technology graduate from the University of Cebu. I combine analytical data precision, full-stack web engineering, embedded IoT prototyping, and rapid AI-accelerated workflows.
+                    </p>
+
+                    <!-- Primary Action Bar -->
+                    <div class="flex flex-wrap items-center gap-3 pt-1">
+                        <a href="#works"
+                           class="group inline-flex items-center gap-2.5 px-5 py-3 rounded-xl bg-cobalt text-white dark:bg-skywire dark:text-deepspace font-mono text-xs font-bold uppercase tracking-wider hover:bg-cyanpulse hover:text-white transition-colors">
+                            <span class="roll-link">
+                                <span>Explore Works (14)</span>
+                                <span>Explore Works (14)</span>
+                            </span>
+                            <span>↓</span>
+                        </a>
+
+                        <a href="https://github.com/edjay17-afk?tab=repositories" target="_blank" rel="noopener noreferrer"
+                           class="group inline-flex items-center gap-2 px-4 py-3 rounded-xl border hairline-strong surface-card font-mono text-xs font-bold uppercase tracking-wider hover:border-cyanpulse transition-colors">
+                            <span class="roll-link">
+                                <span>edjay17-afk (07) ↗</span>
+                                <span>edjay17-afk (07) ↗</span>
+                            </span>
+                        </a>
+
+                        <a href="https://github.com/EdJaymarPilapil?tab=repositories" target="_blank" rel="noopener noreferrer"
+                           class="group inline-flex items-center gap-2 px-4 py-3 rounded-xl border hairline-strong surface-card font-mono text-xs font-bold uppercase tracking-wider hover:border-cyanpulse transition-colors">
+                            <span class="roll-link">
+                                <span>EdJaymarPilapil (12) ↗</span>
+                                <span>EdJaymarPilapil (12) ↗</span>
+                            </span>
+                        </a>
+
+                        <button type="button" id="hero-copy-email"
+                                class="inline-flex items-center gap-2 px-4 py-3 rounded-xl border hairline surface-card font-mono text-xs font-medium text-muted hover:text-[var(--text-ink)] hover:border-cyanpulse transition-colors">
+                            <span>edjaymar17@gmail.com</span>
+                            <span class="text-secondary-accent font-bold">COPY</span>
+                        </button>
+                    </div>
+
+                    <!-- Interactive 3D Polyhedron Discipline Morph Pills -->
+                    <div class="pt-2 space-y-2">
+                        <div class="font-mono text-[10px] uppercase tracking-widest text-muted">
+                            MORPH 3D WIREFRAME TOPOLOGY &amp; FILTER DISCIPLINE:
+                        </div>
+                        <div class="inline-flex flex-wrap items-center gap-1.5 p-1.5 rounded-xl border hairline surface-card font-mono text-[11px]">
+                            <button type="button" data-morph="data" class="morph-btn active px-3 py-1.5 rounded-lg bg-cobalt text-white dark:bg-skywire dark:text-deepspace font-bold uppercase transition-all">
+                                Data &amp; Analytics
+                            </button>
+                            <button type="button" data-morph="web" class="morph-btn px-3 py-1.5 rounded-lg text-muted hover:text-[var(--text-ink)] font-bold uppercase transition-all">
+                                Full-Stack Web
+                            </button>
+                            <button type="button" data-morph="iot" class="morph-btn px-3 py-1.5 rounded-lg text-muted hover:text-[var(--text-ink)] font-bold uppercase transition-all">
+                                IoT &amp; Hardware
+                            </button>
+                            <button type="button" data-morph="ai" class="morph-btn px-3 py-1.5 rounded-lg text-muted hover:text-[var(--text-ink)] font-bold uppercase transition-all">
+                                AI Cinema &amp; Games
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right 5 Cols: Interactive 3D Isometric Wireframe Core (HTML5 2D Canvas) -->
+                <div class="lg:col-span-5 flex flex-col items-center justify-center">
+                    <div id="polyhedron-stage"
+                         class="cad-frame relative w-full max-w-[390px] aspect-square rounded-3xl border hairline surface-card flex items-center justify-center overflow-hidden cursor-grab active:cursor-grabbing select-none shadow-sm">
+                        <canvas id="wireframe-canvas" class="w-full h-full block"></canvas>
+
+                        <!-- Top Left Topology Readout -->
+                        <div class="absolute top-4 left-4 font-mono text-[10px] text-muted uppercase tracking-wider pointer-events-none">
+                            TOPOLOGY // <span id="morph-readout" class="text-primary-accent font-bold">DATA_OCTAHEDRON_MATRIX</span>
+                        </div>
+
+                        <!-- Top Right Vertex Count -->
+                        <div class="absolute top-4 right-4 font-mono text-[10px] text-muted pointer-events-none">
+                            <span id="vertex-readout">V:14 E:24</span>
+                        </div>
+
+                        <!-- Bottom Interaction Hint -->
+                        <div class="absolute bottom-3.5 inset-x-4 flex items-center justify-between font-mono text-[10px] text-muted pointer-events-none">
+                            <span>DRAG TO ROTATE</span>
+                            <span class="text-secondary-accent font-semibold">CLICK FOR PULSE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             03. ARCHITECTURAL SELECTED WORKS INDEX (01 — 14)
+             ========================================================================== -->
+        <section id="works" class="max-w-6xl mx-auto px-4 sm:px-8 py-20 sm:py-24 border-t hairline">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 reveal-up">
+                <div>
+                    <div class="font-mono text-xs text-secondary-accent font-bold tracking-widest uppercase mb-2">
+                        01 // SELECTED ENGINEERING, DATA &amp; CREATIVE WORKS
+                    </div>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-5xl tracking-tight uppercase">
+                        ARCHITECTURAL INDEX
+                    </h2>
+                </div>
+
+                <!-- Quick Category Filter Pills -->
+                <div class="flex flex-wrap items-center gap-1.5 font-mono text-[11px]">
+                    <button type="button" data-filter="all" class="filter-btn active px-3 py-1.5 rounded-lg bg-cobalt text-white dark:bg-skywire dark:text-deepspace font-bold uppercase transition-colors">
+                        All (14)
+                    </button>
+                    <button type="button" data-filter="data" class="filter-btn px-3 py-1.5 rounded-lg border hairline surface-card text-muted hover:text-[var(--text-ink)] font-bold uppercase transition-colors">
+                        Data &amp; Retail Systems
+                    </button>
+                    <button type="button" data-filter="web" class="filter-btn px-3 py-1.5 rounded-lg border hairline surface-card text-muted hover:text-[var(--text-ink)] font-bold uppercase transition-colors">
+                        Full-Stack Web
+                    </button>
+                    <button type="button" data-filter="iot" class="filter-btn px-3 py-1.5 rounded-lg border hairline surface-card text-muted hover:text-[var(--text-ink)] font-bold uppercase transition-colors">
+                        IoT &amp; Hardware
+                    </button>
+                    <button type="button" data-filter="ai" class="filter-btn px-3 py-1.5 rounded-lg border hairline surface-card text-muted hover:text-[var(--text-ink)] font-bold uppercase transition-colors">
+                        AI Cinema &amp; Games
+                    </button>
+                </div>
+            </div>
+
+            <div class="font-mono text-[11px] text-muted uppercase tracking-wider mb-4 flex items-center justify-between">
+                <span>HOVER ROW FOR LIVE SCHEMATIC PORTAL</span>
+                <span>CLICK ROW TO OPEN TECHNICAL DOSSIER →</span>
+            </div>
+
+            <!-- Numbered Swiss Rows Container -->
+            <div id="works-index-list" class="divide-y hairline border-y hairline">
+                <!-- Dynamically populated via JS -->
+            </div>
+
+            <!-- Dual GitHub Repositories Banner -->
+            <div class="mt-8 p-5 rounded-2xl border hairline surface-card cad-frame flex flex-col sm:flex-row sm:items-center justify-between gap-4 reveal-up">
+                <div class="space-y-1">
+                    <div class="font-mono text-xs font-bold uppercase tracking-wider text-primary-accent">
+                        // SOURCE CODE &amp; PUBLIC REPOSITORIES
+                    </div>
+                    <p class="text-xs sm:text-sm text-muted">
+                        Inspect repositories, Python retail analytics tools, full-stack builds, and collaborative commits across both GitHub profiles.
+                    </p>
+                </div>
+                <div class="flex flex-wrap items-center gap-2.5 font-mono text-xs font-bold">
+                    <a href="https://github.com/edjay17-afk?tab=repositories" target="_blank" rel="noopener noreferrer"
+                       class="px-4 py-2.5 rounded-xl bg-cobalt text-white dark:bg-skywire dark:text-deepspace hover:bg-cyanpulse hover:text-white transition-colors">
+                        edjay17-afk (07 Repos) ↗
+                    </a>
+                    <a href="https://github.com/EdJaymarPilapil?tab=repositories" target="_blank" rel="noopener noreferrer"
+                       class="px-4 py-2.5 rounded-xl border hairline-strong surface-elevated hover:border-cyanpulse transition-colors">
+                        EdJaymarPilapil (12 Repos) ↗
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             04. CAPABILITIES & AI-AUGMENTED WORKFLOW MATRIX
+             ========================================================================== -->
+        <section id="capabilities" class="max-w-6xl mx-auto px-4 sm:px-8 py-20 sm:py-24 border-t hairline">
+            <div class="mb-12 reveal-up">
+                <div class="font-mono text-xs text-secondary-accent font-bold tracking-widest uppercase mb-2">
+                    02 // TECHNICAL CAPABILITIES &amp; ADAPTABILITY
+                </div>
+                <h2 class="font-display font-extrabold text-3xl sm:text-5xl tracking-tight uppercase">
+                    STACK &amp; AI WORKFLOW MATRIX
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Card 1: Rapid Adaptability & AI-Augmented Engineering (Spotlight) -->
+                <div class="cad-frame reveal-up rounded-2xl border hairline-strong surface-card p-7 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between font-mono text-xs text-muted mb-5">
+                            <span>01 / ADAPTABILITY &amp; AI ORCHESTRATION</span>
+                            <span class="px-2 py-0.5 rounded bg-cyanpulse/15 text-secondary-accent font-bold">CORE ADVANTAGE</span>
+                        </div>
+                        <h3 class="font-display font-bold text-2xl uppercase tracking-tight mb-3">
+                            Rapid Adaptability &amp; AI-Augmented Engineering
+                        </h3>
+                        <p class="text-sm text-muted leading-relaxed mb-6">
+                            Fast learner comfortable onboarding into unfamiliar codebases, frameworks, and tools on demand. Fluent daily orchestration of <strong class="text-[var(--text-ink)]">Claude, ChatGPT, Gemini, and Kimi</strong> to accelerate system architecture, SQL/Python analytics, debugging, documentation, and rapid prototyping.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t hairline flex flex-wrap gap-2 font-mono text-xs">
+                        <span class="px-2.5 py-1 rounded-md bg-cobalt/10 dark:bg-skywire/15 text-primary-accent border border-cobalt/20 dark:border-skywire/30 font-bold">Claude</span>
+                        <span class="px-2.5 py-1 rounded-md bg-cobalt/10 dark:bg-skywire/15 text-primary-accent border border-cobalt/20 dark:border-skywire/30 font-bold">ChatGPT</span>
+                        <span class="px-2.5 py-1 rounded-md bg-cobalt/10 dark:bg-skywire/15 text-primary-accent border border-cobalt/20 dark:border-skywire/30 font-bold">Gemini</span>
+                        <span class="px-2.5 py-1 rounded-md bg-cobalt/10 dark:bg-skywire/15 text-primary-accent border border-cobalt/20 dark:border-skywire/30 font-bold">Kimi</span>
+                        <span class="px-2.5 py-1 rounded-md border hairline surface-elevated font-medium">Google Flow &amp; Veo</span>
+                    </div>
+                </div>
+
+                <!-- Card 2: Data & Analytics -->
+                <div class="cad-frame reveal-up rounded-2xl border hairline surface-card p-7 flex flex-col justify-between" style="transition-delay: 0.06s;">
+                    <div>
+                        <div class="flex items-center justify-between font-mono text-xs text-muted mb-5">
+                            <span>02 / DATA &amp; ANALYTICS</span>
+                            <span class="text-primary-accent font-bold">PRODUCTION FOCUS</span>
+                        </div>
+                        <h3 class="font-display font-bold text-2xl uppercase tracking-tight mb-3">
+                            Data Analysis, SQL &amp; KPI Reporting
+                        </h3>
+                        <p class="text-sm text-muted leading-relaxed mb-6">
+                            Transforming raw operational datasets into structured dashboards, automated SQL/Python reporting pipelines, business KPI tracking, and clear data-driven recommendations at Ubest Development Inc.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t hairline flex flex-wrap gap-2 font-mono text-xs">
+                        <span class="px-2.5 py-1 rounded-md border hairline surface-elevated font-semibold">SQL</span>
+                        <span class="px-2.5 py-1 rounded-md border hairline surface-elevated font-semibold">Python</span>
+                        <span class="px-2.5 py-1 rounded-md border hairline surface-elevated font-semibold">Data Cleaning</span>
+                        <span class="px-2.5 py-1 rounded-md border hairline surface-elevated font-semibold">KPI Reporting</span>
+                        <span class="px-2.5 py-1 rounded-md border hairline surface-elevated font-semibold">Dashboarding</span>
+                        <span class="px-2.5 py-1 rounded-md border hairline surface-elevated font-semibold">Excel / CSV Pipelines</span>
+                    </div>
+                </div>
+
+                <!-- Card 3: Full-Stack & Game Development -->
+                <div class="cad-frame reveal-up rounded-2xl border hairline surface-card p-7 flex flex-col justify-between" style="transition-delay: 0.12s;">
+                    <div>
+                        <div class="flex items-center justify-between font-mono text-xs text-muted mb-5">
+                            <span>03 / FULL-STACK &amp; INTERACTIVE</span>
+                            <span class="text-primary-accent font-bold">WEB + UNITY</span>
+                        </div>
+                        <h3 class="font-display font-bold text-2xl uppercase tracking-tight mb-3">
+                            Full-Stack Web &amp; Game Engineering
+                        </h3>
+                        <p class="text-sm text-muted leading-relaxed mb-6">
+                            End-to-end web application development from normalized relational schemas and backend APIs to reactive frontends and Unity C# mobile game mechanics.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t hairline flex flex-wrap gap-1.5 font-mono text-[11px]">
+                        <span class="px-2 py-1 rounded border hairline surface-elevated font-semibold">PHP / Laravel</span>
+                        <span class="px-2 py-1 rounded border hairline surface-elevated font-semibold">C# / Entity Framework</span>
+                        <span class="px-2 py-1 rounded border hairline surface-elevated font-semibold">JavaScript</span>
+                        <span class="px-2 py-1 rounded border hairline surface-elevated font-semibold">Vue.js &amp; React</span>
+                        <span class="px-2 py-1 rounded border hairline surface-elevated font-semibold">Unity</span>
+                        <span class="px-2 py-1 rounded border hairline surface-elevated font-semibold">MySQL / SQLite / Neon PG</span>
+                    </div>
+                </div>
+
+                <!-- Card 4: Hardware, Tooling & Languages -->
+                <div class="cad-frame reveal-up rounded-2xl border hairline surface-card p-7 flex flex-col justify-between" style="transition-delay: 0.18s;">
+                    <div>
+                        <div class="flex items-center justify-between font-mono text-xs text-muted mb-5">
+                            <span>04 / EMBEDDED IOT &amp; TOOLING</span>
+                            <span class="text-primary-accent font-bold">SYSTEMS</span>
+                        </div>
+                        <h3 class="font-display font-bold text-2xl uppercase tracking-tight mb-3">
+                            IoT Hardware, Dev Environment &amp; Languages
+                        </h3>
+                        <p class="text-sm text-muted leading-relaxed mb-6">
+                            Hands-on microcontroller and Raspberry Pi integration paired with disciplined Git version control, modern IDEs, and clear bilingual communication.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t hairline flex flex-wrap gap-1.5 font-mono text-[11px]">
+                        <span class="px-2 py-1 rounded border hairline surface-elevated font-semibold">ESP32</span>
+                        <span class="px-2 py-1 rounded border hairline surface-elevated font-semibold">Raspberry Pi</span>
+                        <span class="px-2 py-1 rounded border hairline surface-elevated font-semibold">Git &amp; GitHub</span>
+                        <span class="px-2 py-1 rounded border hairline surface-elevated font-semibold">Visual Studio &amp; VS Code</span>
+                        <span class="px-2 py-1 rounded border hairline surface-elevated font-semibold">PowerShell</span>
+                        <span class="px-2 py-1 rounded border hairline surface-elevated font-semibold">English &amp; Filipino (Tagalog / Bisaya)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             05. CAREER EXPERIENCE & CREDENTIALS TIMELINE
+             ========================================================================== -->
+        <section id="experience" class="max-w-6xl mx-auto px-4 sm:px-8 py-20 sm:py-24 border-t hairline">
+            <div class="mb-12 reveal-up">
+                <div class="font-mono text-xs text-secondary-accent font-bold tracking-widest uppercase mb-2">
+                    03 // CAREER EXPERIENCE &amp; ACADEMIC HONORS
+                </div>
+                <h2 class="font-display font-extrabold text-3xl sm:text-5xl tracking-tight uppercase">
+                    EXPERIENCE &amp; CREDENTIALS
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 reveal-up">
+                <!-- Left Column: Work Experience Timeline -->
+                <div class="cad-frame rounded-2xl border hairline surface-card p-7 space-y-6">
+                    <div class="font-mono text-xs font-bold uppercase tracking-widest text-primary-accent">
+                        // WORK EXPERIENCE
+                    </div>
+
+                    <!-- Current Role: Data Analyst — Ubest Development Inc. -->
+                    <div class="relative pl-5 border-l-2 border-cyanpulse pb-6">
+                        <span class="absolute -left-[7px] top-1 w-3 h-3 rounded-full bg-cyanpulse"></span>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <h3 class="font-display font-bold text-xl uppercase">Data Analyst</h3>
+                            <span class="font-mono text-[11px] px-2.5 py-0.5 rounded bg-cobalt text-white dark:bg-skywire dark:text-deepspace font-bold">
+                                CURRENT
+                            </span>
+                        </div>
+                        <p class="font-mono text-xs text-secondary-accent font-bold mb-2">
+                            Ubest Development Inc. • Mandaue City, Philippines
+                        </p>
+                        <p class="text-sm text-muted leading-relaxed">
+                            Transforming operational datasets into structured dashboards, SQL/Python reporting pipelines, business KPIs, and actionable data-driven recommendations.
+                        </p>
+                    </div>
+
+                    <!-- Internship: Frontend / Web Developer Intern — Filipino Homes -->
+                    <div class="relative pl-5 border-l-2 hairline-strong">
+                        <span class="absolute -left-[7px] top-1 w-3 h-3 rounded-full border-2 border-cyanpulse bg-[var(--bg-surface)]"></span>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <h3 class="font-display font-bold text-lg uppercase">Frontend / Web Developer Intern</h3>
+                            <span class="font-mono text-[11px] px-2.5 py-0.5 rounded border hairline surface-elevated text-muted font-bold">
+                                INTERNSHIP
+                            </span>
+                        </div>
+                        <p class="font-mono text-xs text-muted font-semibold mb-2">
+                            Filipino Homes • Cebu City, Philippines
+                        </p>
+                        <p class="text-sm text-muted leading-relaxed">
+                            Contributed to production web interfaces, responsive UI components, and collaborative Git workflows across real estate web platforms including <code class="text-[var(--text-ink)]">fhi-global</code>.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Column: Education, Honors & Certifications -->
+                <div class="cad-frame rounded-2xl border hairline surface-card p-7 space-y-6">
+                    <div class="font-mono text-xs font-bold uppercase tracking-widest text-primary-accent">
+                        // EDUCATION &amp; CERTIFICATIONS
+                    </div>
+
+                    <!-- Tertiary Education -->
+                    <div class="pb-5 border-b hairline">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <h3 class="font-display font-bold text-xl uppercase">BS Information Technology</h3>
+                            <span class="font-mono text-[11px] px-2.5 py-0.5 rounded bg-cobalt text-white dark:bg-skywire dark:text-deepspace font-bold">
+                                MAGNA CUM LAUDE
+                            </span>
+                        </div>
+                        <p class="font-mono text-xs text-secondary-accent font-bold mb-1.5">
+                            University of Cebu - Main Campus • Aug 2022 – June 2026
+                        </p>
+                        <p class="text-sm text-muted leading-relaxed">
+                            Sanciangko St., Cebu City, Philippines. Graduated <strong class="text-[var(--text-ink)]">Magna Cum Laude</strong>; represented LuTuon as a Top 25 Regional Startup Challenge Qualifier.
+                        </p>
+                    </div>
+
+                    <!-- Secondary Education -->
+                    <div class="pb-5 border-b hairline">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <h3 class="font-display font-bold text-lg uppercase">Junior &amp; Senior High School</h3>
+                            <span class="font-mono text-[11px] text-muted font-semibold">2016 – 2022</span>
+                        </div>
+                        <p class="font-mono text-xs text-muted">
+                            Sirao Integrated School • Tawagan, Sirao, Cebu City, Philippines
+                        </p>
+                    </div>
+
+                    <!-- Certification & Honors -->
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <h3 class="font-display font-bold text-base uppercase">Certifications &amp; Honors</h3>
+                            <span class="font-mono text-[11px] text-secondary-accent font-bold">S.Y. 2025–2026</span>
+                        </div>
+                        <ul class="text-sm text-muted space-y-1.5 mt-2">
+                            <li class="flex items-start gap-2">
+                                <span class="text-secondary-accent font-mono font-bold">✓</span>
+                                <span><strong class="text-[var(--text-ink)]">Magna Cum Laude</strong> — Bachelor of Science in Information Technology</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-secondary-accent font-mono font-bold">✓</span>
+                                <span><strong class="text-[var(--text-ink)]">Certificate of Completion</strong> — Alliance Jumpstart Training Program (S.Y. 2025–2026)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             06. DIRECT CONTACT DOCK & DUAL GITHUB REPOSITORIES FOOTER
+             ========================================================================== -->
+        <footer id="contact" class="max-w-6xl mx-auto px-4 sm:px-8 pt-20 pb-14 border-t hairline">
+            <div class="cad-frame rounded-3xl border hairline surface-card p-8 sm:p-12 reveal-up">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-4">
+                        <div class="font-mono text-xs text-secondary-accent font-bold tracking-widest uppercase">
+                            04 // DIRECT TRANSMISSION &amp; REPOSITORIES
+                        </div>
+                        <h2 class="font-display font-extrabold text-3xl sm:text-5xl tracking-tight uppercase leading-[1.05]">
+                            LET’S BUILD DATA &amp; SOFTWARE SYSTEMS<span class="text-secondary-accent">.</span>
+                        </h2>
+                        <p class="text-sm sm:text-base text-muted max-w-xl leading-relaxed">
+                            Based in <strong class="text-[var(--text-ink)]">Cambilog, Guba / Sirao, Cebu City, Philippines</strong>. Reach out directly via email, phone, or inspect my repositories on GitHub.
+                        </p>
+                    </div>
+
+                    <div class="lg:col-span-5 space-y-3">
+                        <!-- Email Card (Copy + Mailto) -->
+                        <div class="p-4 rounded-2xl border hairline surface-elevated flex items-center justify-between gap-3">
+                            <div class="min-w-0">
+                                <div class="font-mono text-[10px] uppercase tracking-wider text-muted">EMAIL ADDRESS</div>
+                                <a href="mailto:edjaymar17@gmail.com" class="font-mono text-sm font-bold text-primary-accent hover:underline truncate block">
+                                    edjaymar17@gmail.com
+                                </a>
+                            </div>
+                            <div class="flex items-center gap-1.5 shrink-0">
+                                <button type="button" data-copy="edjaymar17@gmail.com" data-label="Email"
+                                        class="copy-btn px-3 py-2 rounded-lg border hairline-strong surface-card font-mono text-[11px] font-bold uppercase hover:border-cyanpulse transition-colors">
+                                    Copy
+                                </button>
+                                <a href="mailto:edjaymar17@gmail.com"
+                                   class="px-3 py-2 rounded-lg bg-cobalt text-white dark:bg-skywire dark:text-deepspace font-mono text-[11px] font-bold uppercase hover:bg-cyanpulse hover:text-white transition-colors">
+                                    Mail ↗
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Phone Card (One-Click Copy) -->
+                        <div class="p-4 rounded-2xl border hairline surface-elevated flex items-center justify-between gap-3">
+                            <div>
+                                <div class="font-mono text-[10px] uppercase tracking-wider text-muted">MOBILE / PHONE (PH)</div>
+                                <div class="font-mono text-sm font-bold">0962-423-2863</div>
+                            </div>
+                            <button type="button" data-copy="0962-423-2863" data-label="Phone number"
+                                    class="copy-btn px-3 py-2 rounded-lg border hairline-strong surface-card font-mono text-[11px] font-bold uppercase hover:border-cyanpulse transition-colors">
+                                Copy
+                            </button>
+                        </div>
+
+                        <!-- Dual GitHub Links -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1 font-mono text-xs font-bold">
+                            <a href="https://github.com/edjay17-afk?tab=repositories" target="_blank" rel="noopener noreferrer"
+                               class="px-4 py-3 rounded-xl border hairline-strong surface-card hover:border-cyanpulse flex items-center justify-between transition-colors">
+                                <span>edjay17-afk</span>
+                                <span class="text-secondary-accent">REPOS ↗</span>
+                            </a>
+                            <a href="https://github.com/EdJaymarPilapil?tab=repositories" target="_blank" rel="noopener noreferrer"
+                               class="px-4 py-3 rounded-xl border hairline-strong surface-card hover:border-cyanpulse flex items-center justify-between transition-colors">
+                                <span>EdJaymarPilapil</span>
+                                <span class="text-secondary-accent">REPOS ↗</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Legal & Coordinate Strip -->
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-[11px] text-muted">
+                <span>© 2026 ED JAYMAR B. PILAPIL • DATA ANALYST &amp; BSIT MAGNA CUM LAUDE</span>
+                <div class="flex items-center gap-4">
+                    <span>CAMBILOG, GUBA / SIRAO, CEBU CITY</span>
+                    <a href="#top" class="text-primary-accent font-bold hover:underline">TOP ↑</a>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- ==========================================================================
+         07. FLOATING SPRING-PHYSICS HOVER PREVIEW PORTAL (DESKTOP)
+         ========================================================================== -->
+    <div id="hover-portal" class="hidden lg:block" aria-hidden="true">
+        <div class="rounded-2xl border hairline-strong surface-card shadow-2xl p-4 backdrop-blur-md">
+            <div class="flex items-center justify-between font-mono text-[10px] text-muted uppercase mb-2">
+                <span id="portal-code">SCHEMATIC // 01</span>
+                <span class="text-secondary-accent font-bold">LIVE DIAGRAM</span>
+            </div>
+            <div id="portal-svg-container" class="rounded-xl border hairline surface-elevated p-2 text-[var(--text-ink)]">
+                <!-- Live SVG injected on row hover -->
+            </div>
+            <div class="mt-2.5 flex items-center justify-between font-mono text-[10px]">
+                <span id="portal-role" class="text-muted truncate max-w-[210px]">Role</span>
+                <span class="text-primary-accent font-bold">CLICK TO INSPECT →</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         08. SLIDE-OVER TECHNICAL DOSSIER DRAWER
+         ========================================================================== -->
+    <div id="dossier-backdrop" class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm flex justify-end">
+        <aside id="dossier-drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title"
+               class="w-full max-w-xl h-full surface-card border-l hairline-strong overflow-y-auto p-6 sm:p-8 flex flex-col justify-between shadow-2xl">
+            <div class="space-y-6">
+                <!-- Top Bar -->
+                <div class="flex items-center justify-between pb-4 border-b hairline">
+                    <div class="font-mono text-xs text-secondary-accent font-bold uppercase tracking-widest">
+                        TECHNICAL DOSSIER // <span id="drawer-num">01</span>
+                    </div>
+                    <button type="button" id="drawer-close"
+                            class="px-3 py-1.5 rounded-lg border hairline-strong surface-elevated font-mono text-xs font-bold uppercase hover:border-cyanpulse transition-colors">
+                        ESC / CLOSE ✕
+                    </button>
+                </div>
+
+                <!-- Title & Subtitle -->
+                <div>
+                    <h2 id="drawer-title" class="font-display font-extrabold text-2xl sm:text-4xl uppercase tracking-tight mb-1">
+                        Project Title
+                    </h2>
+                    <p id="drawer-subtitle" class="font-mono text-xs text-primary-accent font-bold">
+                        Project Subtitle
+                    </p>
+                </div>
+
+                <!-- Live Packet-Flow Architecture Diagram -->
+                <div class="rounded-2xl border hairline surface-elevated p-4 cad-frame">
+                    <div class="flex items-center justify-between font-mono text-[10px] text-muted uppercase mb-2">
+                        <span>SYSTEM ARCHITECTURE &amp; PACKET FLOW</span>
+                        <span class="text-secondary-accent">ACTIVE STREAM</span>
+                    </div>
+                    <div id="drawer-svg" class="text-[var(--text-ink)]"></div>
+                </div>
+
+                <!-- Key Metrics Grid -->
+                <div id="drawer-metrics" class="grid grid-cols-3 gap-2.5">
+                    <!-- Populated via JS -->
+                </div>
+
+                <!-- Overview & Role -->
+                <div class="space-y-2">
+                    <div class="font-mono text-[11px] uppercase tracking-wider text-muted">
+                        ROLE: <span id="drawer-role" class="text-[var(--text-ink)] font-bold">Lead Engineer</span>
+                    </div>
+                    <p id="drawer-summary" class="text-sm text-muted leading-relaxed">
+                        Summary goes here.
+                    </p>
+                </div>
+
+                <!-- Engineering Highlights -->
+                <div class="space-y-2">
+                    <div class="font-mono text-[11px] uppercase tracking-wider text-primary-accent font-bold">
+                        // ARCHITECTURE &amp; IMPLEMENTATION HIGHLIGHTS
+                    </div>
+                    <ul id="drawer-bullets" class="space-y-2 text-sm text-muted">
+                        <!-- Populated via JS -->
+                    </ul>
+                </div>
+
+                <!-- Stack Tags -->
+                <div class="space-y-2">
+                    <div class="font-mono text-[11px] uppercase tracking-wider text-muted">
+                        TECHNOLOGY &amp; TOOLING STACK
+                    </div>
+                    <div id="drawer-stack" class="flex flex-wrap gap-1.5 font-mono text-xs">
+                        <!-- Populated via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Drawer Footer Navigation -->
+            <div class="pt-6 mt-8 border-t hairline flex items-center justify-between gap-3">
+                <button type="button" id="drawer-prev"
+                        class="px-4 py-2.5 rounded-xl border hairline-strong surface-elevated font-mono text-xs font-bold uppercase hover:border-cyanpulse transition-colors">
+                    ← Prev
+                </button>
+                <a id="drawer-repo-link" href="https://github.com/edjay17-afk?tab=repositories" target="_blank" rel="noopener noreferrer"
+                   class="px-4 py-2.5 rounded-xl bg-cobalt text-white dark:bg-skywire dark:text-deepspace font-mono text-xs font-bold uppercase hover:bg-cyanpulse hover:text-white transition-colors">
+                    Open Repository ↗
+                </a>
+                <button type="button" id="drawer-next"
+                        class="px-4 py-2.5 rounded-xl border hairline-strong surface-elevated font-mono text-xs font-bold uppercase hover:border-cyanpulse transition-colors">
+                    Next →
+                </button>
+            </div>
+        </aside>
+    </div>
+
+    <!-- ==========================================================================
+         09. NON-INTRUSIVE TOAST NOTIFICATION (CLIPBOARD / SYSTEM FEEDBACK)
+         ========================================================================== -->
+    <div id="toast-box" role="status" aria-live="polite"
+         class="fixed bottom-5 right-5 z-50 pointer-events-none opacity-0 translate-y-3 transition-all duration-300">
+        <div class="px-4 py-3 rounded-xl bg-obsidian text-white dark:bg-skywire dark:text-deepspace border border-cyanpulse/40 shadow-xl font-mono text-xs font-bold flex items-center gap-2.5">
+            <span class="w-2 h-2 rounded-full bg-cyanpulse dark:bg-deepspace"></span>
+            <span id="toast-text">Copied to clipboard</span>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         10. INTERACTIVE ENGINE: PRELOADER, 3D WIREFRAME, PORTAL, DOSSIER & AUDIO
+         ========================================================================== -->
+    <script>
+        (function () {
+            'use strict';
+
+            /* ----------------------------------------------------------------------
+               A. COMPLETE 01—14 ARCHITECTURAL WORKS & GITHUB REPOSITORIES DATASET
+               ---------------------------------------------------------------------- */
+            const WORKS = [
+                {
+                    num: '01',
+                    category: 'data',
+                    title: 'SALES-DMANALYZER',
+                    subtitle: 'Sales & DM Analytics Engine',
+                    langBadge: 'Python',
+                    repoUrl: 'https://github.com/edjay17-afk/sales-dmAnalyzer',
+                    repoLabel: 'edjay17-afk/sales-dmAnalyzer',
+                    stackShort: 'Python · Data Analysis · Sales Metrics · Reporting',
+                    role: 'Data Analyst & Python Developer',
+                    metrics: [
+                        { label: 'LANGUAGE', val: 'Python' },
+                        { label: 'DOMAIN', val: 'Sales + DM KPIs' },
+                        { label: 'REPOSITORY', val: 'edjay17-afk' }
+                    ],
+                    summary: 'A Python-powered sales and direct-message performance analytics engine built to parse transactional logs, surface conversion trends, and automate structured business reporting.',
+                    bullets: [
+                        'Ingests and cleans raw sales and direct-messaging engagement records using Python data pipelines.',
+                        'Computes conversion ratios, SKU velocity, and period-over-period performance summaries.',
+                        'Outputs actionable analytical reports to support operational and merchandising decisions.'
+                    ],
+                    stack: ['Python', 'Data Analysis', 'Sales Analytics', 'ETL Pipelines', 'KPI Reporting'],
+                    svg: `
+                        <svg class="w-full h-32" viewBox="0 0 380 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="14" y="24" width="96" height="82" rx="10" stroke="#02396E" stroke-width="1.8" fill="#02396E" fill-opacity="0.09"/>
+                            <text x="26" y="52" fill="currentColor" font-family="JetBrains Mono" font-size="9.5" font-weight="700">RAW LOGS</text>
+                            <text x="26" y="69" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="8">Sales + DM Data</text>
+                            <line x1="110" y1="65" x2="146" y2="65" stroke="#0284C7" stroke-width="2" class="svg-packet-flow"/>
+                            <rect x="146" y="20" width="104" height="90" rx="10" stroke="#0284C7" stroke-width="1.8" fill="#0284C7" fill-opacity="0.09"/>
+                            <text x="160" y="50" fill="currentColor" font-family="JetBrains Mono" font-size="9.5" font-weight="700">PYTHON ENGINE</text>
+                            <text x="160" y="67" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="8">sales-dmAnalyzer</text>
+                            <text x="160" y="84" fill="#0284C7" font-family="JetBrains Mono" font-size="8">KPI AGGREGATOR</text>
+                            <line x1="250" y1="65" x2="284" y2="65" stroke="#38BDF8" stroke-width="2" class="svg-packet-flow"/>
+                            <rect x="284" y="24" width="82" height="82" rx="10" stroke="currentColor" stroke-opacity="0.45" fill="currentColor" fill-opacity="0.04"/>
+                            <text x="296" y="54" fill="currentColor" font-family="JetBrains Mono" font-size="9.5" font-weight="700">INSIGHTS</text>
+                            <text x="296" y="72" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="8">Trend Matrix</text>
+                        </svg>
+                    `
+                },
+                {
+                    num: '02',
+                    category: 'data',
+                    title: 'RETAILOS',
+                    subtitle: 'Retail Operations & Analytics OS (★ 1)',
+                    langBadge: 'Python · ★ 1',
+                    repoUrl: 'https://github.com/edjay17-afk/retailOS',
+                    repoLabel: 'edjay17-afk/retailOS',
+                    stackShort: 'Python · Retail Operations · Inventory & Store Telemetry',
+                    role: 'Systems & Data Architect',
+                    metrics: [
+                        { label: 'LANGUAGE', val: 'Python' },
+                        { label: 'STARS', val: '★ 1 GitHub' },
+                        { label: 'ARCHITECTURE', val: 'Retail Ops OS' }
+                    ],
+                    summary: 'A unified Python retail operations and analytics system designed to streamline daily store workflows, stock movement visibility, and operational decision-making.',
+                    bullets: [
+                        'Centralizes store-level sales, stock health, and operational workflows in a modular Python architecture.',
+                        'Automates variance detection and inventory turnover diagnostics across retail product lines.',
+                        'Starred repository on GitHub (edjay17-afk/retailOS) built for scalable retail intelligence.'
+                    ],
+                    stack: ['Python', 'Retail Operations', 'Inventory Analytics', 'Automation', 'GitHub'],
+                    svg: `
+                        <svg class="w-full h-32" viewBox="0 0 380 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="16" y="22" width="102" height="86" rx="10" stroke="currentColor" stroke-opacity="0.45" fill="currentColor" fill-opacity="0.04"/>
+                            <text x="28" y="50" fill="currentColor" font-family="JetBrains Mono" font-size="9.5" font-weight="700">STORE OPS</text>
+                            <text x="28" y="68" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="8">POS + Stock Feed</text>
+                            <line x1="118" y1="65" x2="152" y2="65" stroke="#0284C7" stroke-width="2" class="svg-packet-flow"/>
+                            <rect x="152" y="20" width="104" height="90" rx="10" stroke="#02396E" stroke-width="1.8" fill="#02396E" fill-opacity="0.09"/>
+                            <text x="172" y="50" fill="currentColor" font-family="JetBrains Mono" font-size="10" font-weight="700">RETAILOS</text>
+                            <text x="166" y="67" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="8">Python Core</text>
+                            <text x="174" y="84" fill="#0284C7" font-family="JetBrains Mono" font-size="8" font-weight="700">★ STARRED</text>
+                            <line x1="256" y1="65" x2="286" y2="65" stroke="#38BDF8" stroke-width="2" class="svg-packet-flow"/>
+                            <rect x="286" y="22" width="78" height="86" rx="10" stroke="#0284C7" stroke-width="1.6" fill="#0284C7" fill-opacity="0.07"/>
+                            <text x="298" y="54" fill="currentColor" font-family="JetBrains Mono" font-size="9.5" font-weight="700">METRICS</text>
+                            <text x="298" y="72" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="8">KPI Output</text>
+                        </svg>
+                    `
+                },
+                {
+                    num: '03',
+                    category: 'data',
+                    title: '7-ELEVEN DAILY ORDER SUGGESTION',
+                    subtitle: 'Automated Daily Store Replenishment & Order Suggestion System',
+                    langBadge: 'Python',
+                    repoUrl: 'https://github.com/edjay17-afk/7-Eleven-Daily-Order-Suggestion-System',
+                    repoLabel: 'edjay17-afk/7-Eleven-Daily-Order-Suggestion-System',
+                    stackShort: 'Python · Demand Forecasting · Replenishment Logic · SKU Velocity',
+                    role: 'Data Analyst & Supply Logic Developer',
+                    metrics: [
+                        { label: 'LANGUAGE', val: 'Python' },
+                        { label: 'MODEL', val: 'SKU Replenish' },
+                        { label: 'CADENCE', val: 'Daily Orders' }
+                    ],
+                    summary: 'An automated Python replenishment and daily order suggestion engine tailored for high-frequency convenience store operations—balancing sell-through velocity, par levels, and stockout prevention.',
+                    bullets: [
+                        'Calculates optimal daily SKU reorder quantities from historical sell-through rates and current on-hand inventory.',
+                        'Minimizes both stockouts on fast-moving items and overstock spoilage on perishable goods.',
+                        'Generates clear, store-ready daily order sheets in Python.'
+                    ],
+                    stack: ['Python', 'Demand Forecasting', 'Inventory Optimization', 'Convenience Retail', 'Data Modeling'],
+                    svg: `
+                        <svg class="w-full h-32" viewBox="0 0 380 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="14" y="22" width="98" height="86" rx="10" stroke="#02396E" stroke-width="1.8" fill="#02396E" fill-opacity="0.09"/>
+                            <text x="26" y="50" fill="currentColor" font-family="JetBrains Mono" font-size="9.5" font-weight="700">SKU VELOCITY</text>
+                            <text x="26" y="68" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="8">On-Hand + Sales</text>
+                            <line x1="112" y1="65" x2="146" y2="65" stroke="#0284C7" stroke-width="2" class="svg-packet-flow"/>
+                            <rect x="146" y="20" width="108" height="90" rx="10" stroke="#0284C7" stroke-width="1.8" fill="#0284C7" fill-opacity="0.09"/>
+                            <text x="158" y="50" fill="currentColor" font-family="JetBrains Mono" font-size="9" font-weight="700">ORDER ENGINE</text>
+                            <text x="158" y="67" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="8">Par + Lead Time</text>
+                            <text x="158" y="84" fill="#0284C7" font-family="JetBrains Mono" font-size="8">7-ELEVEN LOGIC</text>
+                            <line x1="254" y1="65" x2="286" y2="65" stroke="#38BDF8" stroke-width="2" class="svg-packet-flow"/>
+                            <rect x="286" y="22" width="80" height="86" rx="10" stroke="currentColor" stroke-opacity="0.45" fill="currentColor" fill-opacity="0.04"/>
+                            <text x="298" y="54" fill="currentColor" font-family="JetBrains Mono" font-size="9" font-weight="700">DAILY PO</text>
+                            <text x="298" y="72" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="8">Order Sheet</text>
+                        </svg>
+                    `
+                },
+                {
+                    num: '04',
+                    category: 'data',
+                    title: 'STOREHUB',
+                    subtitle: 'Multi-Store Retail & POS Inventory Hub',
+                    langBadge: 'Python',
+                    repoUrl: 'https://github.com/edjay17-afk/Storehub',
+                    repoLabel: 'edjay17-afk/Storehub',
+                    stackShort: 'Python · Multi-Store Inventory · POS Data Sync',
+                    role: 'Backend & Retail Systems Developer',
+                    metrics: [
+                        { label: 'LANGUAGE', val: 'Python' },
+                        { label: 'SCOPE', val: 'Multi-Branch' },
+                        { label: 'FOCUS', val: 'Stock & Sales' }
+                    ],
+                    summary: 'A centralized Python retail and inventory hub built to consolidate product catalogs, stock balances, and store-level transaction summaries across retail branches.',
+                    bullets: [
+                        'Unifies product catalog records, stock adjustments, and branch-level sales tracking in Python.',
+                        'Provides structured reporting endpoints for audit reconciliation and restock alerts.',
+                        'Designed with clean modular Python structures for rapid integration with retail workflows.'
+                    ],
+                    stack: ['Python', 'Inventory Management', 'POS Integration', 'Data Structures', 'Retail Systems'],
+                    svg: `
+                        <svg class="w-full h-32" viewBox="0 0 380 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="16" y="18" width="90" height="38" rx="8" stroke="currentColor" stroke-opacity="0.45"/>
+                            <text x="28" y="41" fill="currentColor" font-family="JetBrains Mono" font-size="9" font-weight="700">BRANCH A</text>
+                            <rect x="16" y="74" width="90" height="38" rx="8" stroke="currentColor" stroke-opacity="0.45"/>
+                            <text x="28" y="97" fill="currentColor" font-family="JetBrains Mono" font-size="9" font-weight="700">BRANCH B</text>
+                            <line x1="106" y1="38" x2="148" y2="56" stroke="#0284C7" stroke-width="1.8" class="svg-packet-flow"/>
+                            <line x1="106" y1="92" x2="148" y2="74" stroke="#0284C7" stroke-width="1.8" class="svg-packet-flow"/>
+                            <rect x="148" y="22" width="102" height="86" rx="10" stroke="#02396E" stroke-width="1.8" fill="#02396E" fill-opacity="0.09"/>
+                            <text x="168" y="54" fill="currentColor" font-family="JetBrains Mono" font-size="10" font-weight="700">STOREHUB</text>
+                            <text x="164" y="72" fill="#0284C7" font-family="JetBrains Mono" font-size="8">Python Hub</text>
+                            <line x1="250" y1="65" x2="284" y2="65" stroke="#38BDF8" stroke-width="2" class="svg-packet-flow"/>
+                            <rect x="284" y="24" width="80" height="82" rx="10" stroke="#0284C7" stroke-width="1.6" fill="#0284C7" fill-opacity="0.07"/>
+                            <text x="296" y="56" fill="currentColor" font-family="JetBrains Mono" font-size="9" font-weight="700">LEDGER</text>
+                            <text x="296" y="74" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="8">Stock Sync</text>
+                        </svg>
+                    `
+                },
+                {
+                    num: '05',
+                    category: 'web',
+                    title: 'PRODUCT-LOCATOR',
+                    subtitle: 'Interactive In-Store Product & Aisle Locator',
+                    langBadge: 'JavaScript',
+                    repoUrl: 'https://github.com/edjay17-afk/Product-Locator',
+                    repoLabel: 'edjay17-afk/Product-Locator',
+                    stackShort: 'JavaScript · Interactive Search · Aisle Wayfinding UI',
+                    role: 'Frontend & Interactive Developer',
+                    metrics: [
+                        { label: 'LANGUAGE', val: 'JavaScript' },
+                        { label: 'UX FLOW', val: 'Instant Lookup' },
+                        { label: 'DOMAIN', val: 'Retail Wayfinding' }
+                    ],
+                    summary: 'An interactive JavaScript product search and aisle wayfinding application that enables shoppers and store associates to pinpoint exact shelf and aisle locations in real time.',
+                    bullets: [
+                        'Implemented instant keyword filtering and category matching in vanilla JavaScript for zero-latency SKU lookup.',
+                        'Mapped product records to visual aisle and bay coordinates for intuitive in-store navigation.',
+                        'Built responsive mobile-first layouts suitable for shopper phones and in-store kiosk displays.'
+                    ],
+                    stack: ['JavaScript', 'HTML5', 'CSS3', 'Interactive Wayfinding', 'Search Indexing'],
+                    svg: `
+                        <svg class="w-full h-32" viewBox="0 0 380 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="16" y="24" width="98" height="82" rx="10" stroke="#02396E" stroke-width="1.8" fill="#02396E" fill-opacity="0.09"/>
+                            <text x="28" y="54" fill="currentColor" font-family="JetBrains Mono" font-size="9.5" font-weight="700">SKU QUERY</text>
+                            <text x="28" y="72" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="8">Instant Filter</text>
+                            <line x1="114" y1="65" x2="150" y2="65" stroke="#0284C7" stroke-width="2" class="svg-packet-flow"/>
+                            <rect x="150" y="22" width="98" height="86" rx="10" stroke="#0284C7" stroke-width="1.8" fill="#0284C7" fill-opacity="0.09"/>
+                            <text x="164" y="54" fill="currentColor" font-family="JetBrains Mono" font-size="10" font-weight="700">JS INDEX</text>
+                            <text x="164" y="72" fill="#0284C7" font-family="JetBrains Mono" font-size="8">Aisle Matcher</text>
+                            <line x1="248" y1="65" x2="282" y2="65" stroke="#38BDF8" stroke-width="2" class="svg-packet-flow"/>
+                            <rect x="282" y="24" width="84" height="82" rx="10" stroke="currentColor" stroke-opacity="0.45" fill="currentColor" fill-opacity="0.04"/>
+                            <text x="294" y="54" fill="currentColor" font-family="JetBrains Mono" font-size="9.5" font-weight="700">AISLE MAP</text>
+                            <text x="294" y="72" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="8">Bay Pinpoint</text>
+                        </svg>
+                    `
+                },
+                {
+                    num: '06',
+                    category: 'web',
+                    title: 'WECHAT-BROADCAST',
+                    subtitle: 'WeChat Broadcast & Campaign Messaging Tool',
+                    langBadge: 'HTML',
+                    repoUrl: 'https://github.com/edjay17-afk/wechat-broadcast',
+                    repoLabel: 'edjay17-afk/wechat-broadcast',
+                    stackShort: 'HTML · Campaign Templates · Messaging Workflow',
+                    role: 'Frontend & Campaign Tooling Developer',
+                    metrics: [
+                        { label: 'LANGUAGE', val: 'HTML / Web' },
+                        { label: 'PURPOSE', val: 'Broadcast UI' },
+                        { label: 'REPOSITORY', val: 'edjay17-afk' }
+                    ],
+                    summary: 'A lightweight HTML-based broadcast composition and campaign messaging interface engineered to streamline structured WeChat announcements, rich formatting, and outreach workflows.',
+                    bullets: [
+                        'Crafted clean, structured HTML message templates and live preview layouts for broadcast campaigns.',
+                        'Simplified repeatable customer announcements and promotional formatting.',
+                        'Hosted publicly at github.com/edjay17-afk/wechat-broadcast.'
+                    ],
+                    stack: ['HTML5', 'CSS', 'Campaign Templates', 'Messaging Workflow'],
+                    svg: `
+                        <svg class="w-full h-32" viewBox="0 0 380 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="16" y="24" width="102" height="82" rx="10" stroke="#02396E" stroke-width="1.8" fill="#02396E" fill-opacity="0.09"/>
+                            <text x="28" y="54" fill="currentColor" font-family="JetBrains Mono" font-size="9.5" font-weight="700">COMPOSER</text>
+                            <text x="28" y="72" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="8">HTML Template</text>
+                            <line x1="118" y1="65" x2="154" y2="65" stroke="#0284C7" stroke-width="2" class="svg-packet-flow"/>
+                            <rect x="154" y="22" width="96" height="86" rx="10" stroke="#0284C7" stroke-width="1.8" fill="#0284C7" fill-opacity="0.09"/>
+                            <text x="168" y="54" fill="currentColor" font-family="JetBrains Mono" font-size="9.5" font-weight="700">BROADCAST</text>
+                            <text x="168" y="72" fill="#0284C7" font-family="JetBrains Mono" font-size="8">Payload Queue</text>
+                            <line x1="250" y1="65" x2="284" y2="65" stroke="#38BDF8" stroke-width="2" class="svg-packet-flow"/>
+                            <rect x="284" y="24" width="80" height="82" rx="10" stroke="currentColor" stroke-opacity="0.45" fill="currentColor" fill-opacity="0.04"/>
+                            <text x="296" y="54" fill="currentColor" font-family="JetBrains Mono" font-size="9.5" font-weight="700">WECHAT</text>
+                            <text x="296" y="72" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="8">Audience Feed</text>
+                        </svg>
+                    `
+                },
+                {
+                    num: '07',
+                    category: 'web',
+                    title: 'MYDEVSPACE',
+                    subtitle: 'Developer Workspace & Interactive Portfolio Sandbox',
+                    langBadge: 'Web · Repo',
+                    repoUrl: 'https://github.com/edjay17-afk/mydevspace',
+                    repoLabel: 'edjay17-afk/mydevspace',
+                    stackShort: 'HTML · CSS · JavaScript · GitHub Architecture',
+                    role: 'Creator & Full-Stack Developer',
+                    metrics: [
+                        { label: 'TYPE', val: 'Dev Sandbox' },
+                        { label: 'STATUS', val: 'Active Repo' },
+                        { label: 'HOST', val: 'edjay17-afk' }
+                    ],
+                    summary: 'My personal developer workspace and interactive web architecture repository housing UI experiments, kinetic design prototypes, and portfolio builds.',
+                    bullets: [
+                        'Serves as the active home base for interactive web engineering experiments and portfolio iterations.',
+                        'Built with responsive modern frontend standards and clean single-file portability.',
+                        'Publicly maintained on GitHub at github.com/edjay17-afk/mydevspace.'
+                    ],
+                    stack: ['HTML5', 'Tailwind CSS', 'JavaScript', 'UI Engineering', 'Git'],
+                    svg: `
+                        <svg class="w-full h-32" viewBox="0 0 380 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="18" y="22" width="148" height="86" rx="10" stroke="#02396E" stroke-width="1.8" fill="#02396E" fill-opacity="0.09"/>
+                            <text x="34" y="52" fill="currentColor" font-family="JetBrains Mono" font-size="10" font-weight="700">MYDEVSPACE</text>
+                            <text x="34" y="70" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="8">Interactive Sandbox</text>
+                            <line x1="166" y1="65" x2="214" y2="65" stroke="#0284C7" stroke-width="2" class="svg-packet-flow"/>
+                            <rect x="214" y="22" width="148" height="86" rx="10" stroke="#0284C7" stroke-width="1.8" fill="#0284C7" fill-opacity="0.09"/>
+                            <text x="230" y="52" fill="currentColor" font-family="JetBrains Mono" font-size="9.5" font-weight="700">GITHUB LIVE</text>
+                            <text x="230" y="70" fill="#0284C7" font-family="JetBrains Mono" font-size="8">edjay17-afk</text>
+                        </svg>
+                    `
+                },
+                {
+                    num: '08',
+                    category: 'web',
+                    title: 'APPLYNA',
+                    subtitle: 'Job-Posting & Recruitment Web Platform',
+                    langBadge: 'Laravel · React',
+                    repoUrl: 'https://github.com/EdJaymarPilapil?tab=repositories',
+                    repoLabel: 'EdJaymarPilapil Repositories',
+                    stackShort: 'Laravel · React · MySQL / SQLite · Tailwind CSS',
+                    role: 'Full-Stack Developer & Brand Architect',
+                    metrics: [
+                        { label: 'CORE STACK', val: 'Laravel + React' },
+                        { label: 'VISUAL ID', val: '#02396E Cobalt' },
+                        { label: 'WORKFLOW', val: 'Applicant ATS' }
+                    ],
+                    summary: 'A full-stack hiring and job-posting recruitment platform engineered with a clean #02396E cobalt visual identity, structured candidate application pipelines, and promotional media assets.',
+                    bullets: [
+                        'Architected relational job-listing, employer, and candidate pipeline schemas using Laravel and MySQL/SQLite.',
+                        'Built responsive job discovery and application tracking interfaces in React and Tailwind CSS.',
+                        'Created cohesive #02396E brand assets and localized promotional media to boost applicant engagement.'
+                    ],
+                    stack: ['Laravel', 'React', 'MySQL', 'SQLite', 'Tailwind CSS', 'REST API'],
+                    svg: `
+                        <svg class="w-full h-32" viewBox="0 0 380 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="14" y="28" width="96" height="74" rx="10" stroke="#02396E" stroke-width="1.8" fill="#02396E" fill-opacity="0.09"/>
+                            <text x="28" y="58" fill="currentColor" font-family="JetBrains Mono" font-size="10" font-weight="700">REACT UI</text>
+                            <text x="28" y="76" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="8">Job Board + ATS</text>
+                            <line x1="110" y1="65" x2="148" y2="65" stroke="#0284C7" stroke-width="2" class="svg-packet-flow"/>
+                            <rect x="148" y="22" width="100" height="86" rx="10" stroke="#0284C7" stroke-width="1.8" fill="#0284C7" fill-opacity="0.09"/>
+                            <text x="164" y="54" fill="currentColor" font-family="JetBrains Mono" font-size="10" font-weight="700">LARAVEL</text>
+                            <text x="164" y="71" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="8">Candidate API</text>
+                            <text x="164" y="86" fill="#0284C7" font-family="JetBrains Mono" font-size="8">#02396E THEME</text>
+                            <line x1="248" y1="65" x2="284" y2="65" stroke="#38BDF8" stroke-width="2" class="svg-packet-flow"/>
+                            <rect x="284" y="28" width="82" height="74" rx="10" stroke="currentColor" stroke-opacity="0.45" fill="currentColor" fill-opacity="0.04"/>
+                            <text x="298" y="58" fill="currentColor" font-family="JetBrains Mono" font-size="9.5" font-weight="700">MYSQL/LITE</text>
+                            <text x="298" y="76" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="8">Hiring Data</text>
+                        </svg>
+                    `
+                },
+                {
+                    num: '09',
+                    category: 'iot',
+                    title: 'SHOECLEANER',
+                    subtitle: 'Automated IoT Shoe-Cleaning & 5-Compartment Storage Cabinet',
+                    langBadge: 'ESP32 · RPi 4B',
+                    repoUrl: 'https://github.com/EdJaymarPilapil?tab=repositories',
+                    repoLabel: 'EdJaymarPilapil Repositories',
+                    stackShort: 'ESP32 DevKit V1 · Raspberry Pi 4B · Waveshare 7" · NEMA 17 · MQ-135 · DHT22',
+                    role: 'Embedded Systems & Mechatronics Engineer',
+                    metrics: [
+                        { label: 'CONTROLLERS', val: 'ESP32 + RPi 4B' },
+                        { label: 'GANTRY', val: '2-Axis X+Z' },
+                        { label: 'CABINET', val: '5-Compartment' }
+                    ],
+                    summary: 'An automated IoT shoe-cleaning kiosk and 5-compartment storage cabinet uniting a Raspberry Pi 4B (Waveshare 7" HDMI Touchscreen) with an ESP32 DevKit V1 driving a 2-axis X+Z NEMA 17 gantry and MQ-135 / DHT22 environmental telemetry.',
+                    bullets: [
+                        'Engineered precision 2-axis X+Z NEMA 17 stepper kinematics and limit-switch homing controlled by ESP32 DevKit V1.',
+                        'Integrated MQ-135 air-quality/odor and DHT22 temperature/humidity sensors to automate sanitization and drying inside a 5-compartment cabinet.',
+                        'Developed an interactive Waveshare 7" HDMI touchscreen kiosk interface on Raspberry Pi 4B.'
+                    ],
+                    stack: ['ESP32 DevKit V1', 'Raspberry Pi 4B', 'Waveshare 7" HDMI', 'NEMA 17 Steppers', 'MQ-135 & DHT22', '2-Axis X+Z Gantry'],
+                    svg: `
+                        <svg class="w-full h-32" viewBox="0 0 380 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="14" y="22" width="104" height="86" rx="10" stroke="#02396E" stroke-width="1.8" fill="#02396E" fill-opacity="0.09"/>
+                            <text x="25" y="50" fill="currentColor" font-family="JetBrains Mono" font-size="9.5" font-weight="700">RPI 4B + 7" UI</text>
+                            <text x="25" y="67" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="8">Waveshare HDMI</text>
+                            <text x="25" y="83" fill="#0284C7" font-family="JetBrains Mono" font-size="8">5-LOCKER HMI</text>
+                            <line x1="118" y1="65" x2="152" y2="65" stroke="#0284C7" stroke-width="2" class="svg-packet-flow"/>
+                            <rect x="152" y="22" width="96" height="86" rx="10" stroke="#0284C7" stroke-width="1.8" fill="#0284C7" fill-opacity="0.09"/>
+                            <text x="168" y="50" fill="currentColor" font-family="JetBrains Mono" font-size="10" font-weight="700">ESP32 V1</text>
+                            <text x="163" y="67" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="8">2-Axis X+Z</text>
+                            <text x="163" y="83" fill="#0284C7" font-family="JetBrains Mono" font-size="8">NEMA 17 STEP</text>
+                            <line x1="248" y1="45" x2="282" y2="38" stroke="#38BDF8" stroke-width="1.8" class="svg-packet-flow"/>
+                            <line x1="248" y1="85" x2="282" y2="92" stroke="#38BDF8" stroke-width="1.8" class="svg-packet-flow"/>
+                            <rect x="282" y="18" width="84" height="38" rx="8" stroke="currentColor" stroke-opacity="0.45"/>
+                            <text x="293" y="41" fill="currentColor" font-family="JetBrains Mono" font-size="9" font-weight="700">MQ-135 VOC</text>
+                            <rect x="282" y="74" width="84" height="38" rx="8" stroke="currentColor" stroke-opacity="0.45"/>
+                            <text x="293" y="97" fill="currentColor" font-family="JetBrains Mono" font-size="9" font-weight="700">DHT22 ENV</text>
+                        </svg>
+                    `
+                },
+                {
+                    num: '10',
+                    category: 'web',
+                    title: 'EATSPRESS',
+                    subtitle: 'Full-Stack Food Ordering System',
+                    langBadge: 'C# · Vue.js',
+                    repoUrl: 'https://github.com/EdJaymarPilapil?tab=repositories',
+                    repoLabel: 'EdJaymarPilapil Repositories',
+                    stackShort: 'C# · Entity Framework · SQLite · Vue.js',
+                    role: 'Full-Stack Developer',
+                    metrics: [
+                        { label: 'BACKEND', val: 'C# + EF Core' },
+                        { label: 'FRONTEND', val: 'Vue.js' },
+                        { label: 'STORAGE', val: 'SQLite' }
+                    ],
+                    summary: 'A full-stack food ordering system featuring a dynamic Vue.js ordering interface backed by C# Entity Framework data access layers and SQLite persistence.',
+                    bullets: [
+                        'Implemented structured backend models, migrations, and order processing logic in C# using Entity Framework.',
+                        'Persisted menu catalogs, customer carts, and order histories reliably in SQLite.',
+                        'Built a reactive, user-friendly Vue.js frontend delivering seamless full-stack integration.'
+                    ],
+                    stack: ['C#', 'Entity Framework', 'SQLite', 'Vue.js', 'Full-Stack Architecture'],
+                    svg: `
+                        <svg class="w-full h-32" viewBox="0 0 380 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="14" y="28" width="96" height="74" rx="10" stroke="#02396E" stroke-width="1.8" fill="#02396E" fill-opacity="0.09"/>
+                            <text x="30" y="58" fill="currentColor" font-family="JetBrains Mono" font-size="10" font-weight="700">VUE.JS</text>
+                            <text x="26" y="76" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="8">Menu + Cart UI</text>
+                            <line x1="110" y1="65" x2="148" y2="65" stroke="#0284C7" stroke-width="2" class="svg-packet-flow"/>
+                            <rect x="148" y="22" width="100" height="86" rx="10" stroke="#0284C7" stroke-width="1.8" fill="#0284C7" fill-opacity="0.09"/>
+                            <text x="166" y="54" fill="currentColor" font-family="JetBrains Mono" font-size="10" font-weight="700">C# + EF</text>
+                            <text x="160" y="71" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="8">Entity Framework</text>
+                            <text x="164" y="86" fill="#0284C7" font-family="JetBrains Mono" font-size="8">DATA ACCESS</text>
+                            <line x1="248" y1="65" x2="284" y2="65" stroke="#38BDF8" stroke-width="2" class="svg-packet-flow"/>
+                            <rect x="284" y="28" width="82" height="74" rx="10" stroke="currentColor" stroke-opacity="0.45" fill="currentColor" fill-opacity="0.04"/>
+                            <text x="302" y="58" fill="currentColor" font-family="JetBrains Mono" font-size="10" font-weight="700">SQLITE</text>
+                            <text x="298" y="76" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="8">Order Store</text>
+                        </svg>
+                    `
+                },
+                {
+                    num: '11',
+                    category: 'ai',
+                    title: 'LUTUON',
+                    subtitle: 'Gamified Mobile Cooking Simulator for Filipino Cuisine',
+                    langBadge: 'Unity · C#',
+                    repoUrl: 'https://github.com/EdJaymarPilapil?tab=repositories',
+                    repoLabel: 'EdJaymarPilapil Repositories',
+                    stackShort: 'Unity · C# · Neon PostgreSQL · SQLite',
+                    role: 'Game & Database Developer',
+                    metrics: [
+                        { label: 'ENGINE', val: 'Unity + C#' },
+                        { label: 'HYBRID DB', val: 'Neon PG + SQLite' },
+                        { label: 'AWARD', val: 'Top 25 Startup' }
+                    ],
+                    summary: 'Top 25 Regional Startup Challenge Qualifier. A gamified mobile cooking simulator celebrating Filipino cuisine built in Unity and C# with hybrid cloud Neon PostgreSQL and local SQLite state persistence.',
+                    bullets: [
+                        'Developed interactive Filipino dish preparation mechanics, recipe progression, and scoring systems in Unity with C#.',
+                        'Architected hybrid state persistence syncing cloud leaderboards/profiles on Neon PostgreSQL with offline SQLite storage.',
+                        'Recognized as a Top 25 Regional Startup Challenge Qualifier for gamified cultural education.'
+                    ],
+                    stack: ['Unity', 'C#', 'Neon PostgreSQL', 'SQLite', 'Top 25 Regional Startup'],
+                    svg: `
+                        <svg class="w-full h-32" viewBox="0 0 380 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="16" y="20" width="144" height="90" rx="12" stroke="#02396E" stroke-width="1.8" fill="#02396E" fill-opacity="0.09"/>
+                            <text x="32" y="48" fill="currentColor" font-family="JetBrains Mono" font-size="10" font-weight="700">UNITY + C#</text>
+                            <text x="32" y="67" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="8">Filipino Cuisine Sim</text>
+                            <text x="32" y="86" fill="#0284C7" font-family="JetBrains Mono" font-size="8" font-weight="700">TOP 25 STARTUP</text>
+                            <path d="M160 46 H216 M160 84 H216" stroke="#0284C7" stroke-width="2" class="svg-packet-flow"/>
+                            <rect x="216" y="18" width="148" height="42" rx="8" stroke="#0284C7" stroke-width="1.6" fill="#0284C7" fill-opacity="0.08"/>
+                            <text x="230" y="37" fill="currentColor" font-family="JetBrains Mono" font-size="9" font-weight="700">NEON POSTGRESQL</text>
+                            <text x="230" y="50" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="7.5">Cloud Sync</text>
+                            <rect x="216" y="70" width="148" height="42" rx="8" stroke="currentColor" stroke-opacity="0.45" fill="currentColor" fill-opacity="0.04"/>
+                            <text x="230" y="89" fill="currentColor" font-family="JetBrains Mono" font-size="9" font-weight="700">SQLITE</text>
+                            <text x="230" y="102" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="7.5">Local State Persistence</text>
+                        </svg>
+                    `
+                },
+                {
+                    num: '12',
+                    category: 'web',
+                    title: 'SITIN MONITORING',
+                    subtitle: 'Student Lab Sit-In & Reservation Management System',
+                    langBadge: 'PHP · SQL',
+                    repoUrl: 'https://github.com/EdJaymarPilapil?tab=repositories',
+                    repoLabel: 'EdJaymarPilapil Repositories',
+                    stackShort: 'PHP · SQL · Session Logging · Automated Reports',
+                    role: 'Backend & Systems Developer',
+                    metrics: [
+                        { label: 'BACKEND', val: 'PHP + SQL' },
+                        { label: 'TRACKING', val: 'Real-Time Logs' },
+                        { label: 'OUTPUT', val: 'Auto Reports' }
+                    ],
+                    summary: 'A laboratory operations platform built with PHP and SQL to streamline student registration, real-time sit-in logging, laboratory reservation scheduling, and automated report generation.',
+                    bullets: [
+                        'Engineered student onboarding, active sit-in session tracking, and seat reservation modules in PHP.',
+                        'Designed normalized SQL queries to audit laboratory utilization and generate printable administrative reports.',
+                        'Reduced manual logbook bottlenecks with fast student lookup and session status controls.'
+                    ],
+                    stack: ['PHP', 'SQL', 'Reservation Scheduling', 'Session Logging', 'Report Generation'],
+                    svg: `
+                        <svg class="w-full h-32" viewBox="0 0 380 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="16" y="22" width="96" height="86" rx="10" stroke="currentColor" stroke-opacity="0.45" fill="currentColor" fill-opacity="0.04"/>
+                            <text x="30" y="50" fill="currentColor" font-family="JetBrains Mono" font-size="9.5" font-weight="700">STUDENTS</text>
+                            <text x="30" y="67" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="8">Registration</text>
+                            <text x="30" y="83" fill="#0284C7" font-family="JetBrains Mono" font-size="8">Reservations</text>
+                            <line x1="112" y1="65" x2="148" y2="65" stroke="#0284C7" stroke-width="2" class="svg-packet-flow"/>
+                            <rect x="148" y="22" width="96" height="86" rx="10" stroke="#02396E" stroke-width="1.8" fill="#02396E" fill-opacity="0.09"/>
+                            <text x="166" y="50" fill="currentColor" font-family="JetBrains Mono" font-size="10" font-weight="700">PHP CORE</text>
+                            <text x="162" y="67" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="8">Sit-In Logs</text>
+                            <text x="162" y="83" fill="#0284C7" font-family="JetBrains Mono" font-size="8">Auto Reports</text>
+                            <line x1="244" y1="65" x2="278" y2="65" stroke="#38BDF8" stroke-width="2" class="svg-packet-flow"/>
+                            <rect x="278" y="22" width="86" height="86" rx="10" stroke="#0284C7" stroke-width="1.6" fill="#0284C7" fill-opacity="0.07"/>
+                            <text x="296" y="54" fill="currentColor" font-family="JetBrains Mono" font-size="10" font-weight="700">SQL DB</text>
+                            <text x="292" y="72" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="8">Lab Records</text>
+                        </svg>
+                    `
+                },
+                {
+                    num: '13',
+                    category: 'ai',
+                    title: 'AI CINEMA ANTHOLOGY',
+                    subtitle: 'Multi-Scene Animated & Thriller Short Films',
+                    langBadge: 'Flow · Veo',
+                    repoUrl: 'https://github.com/EdJaymarPilapil?tab=repositories',
+                    repoLabel: 'EdJaymarPilapil Repositories',
+                    stackShort: 'Google Flow · Veo · Multi-Shot Prompt Engineering',
+                    role: 'AI Film Director & Prompt Architect',
+                    metrics: [
+                        { label: 'TOOLS', val: 'Google Flow + Veo' },
+                        { label: 'SHORT 01', val: '60s 3D Mascot' },
+                        { label: 'SHORT 02', val: '1-Min Thriller' }
+                    ],
+                    summary: 'Directed multi-scene generative short films using Google Flow and Veo—including "The Great Convenience Store Splash!" (a 60-second 3D mascot adventure) and "The Last Phone Call" (a 1-minute dramatic thriller).',
+                    bullets: [
+                        'Authored structured multi-shot prompt sequences in Google Flow and Veo to preserve character consistency and lighting continuity.',
+                        'Directed "The Great Convenience Store Splash!" featuring expressive 3D mascot animation and comedic timing.',
+                        'Produced "The Last Phone Call" crafting suspenseful camera framing, pacing, and dramatic tension.'
+                    ],
+                    stack: ['Google Flow', 'Google Veo', 'Prompt Engineering', '3D Mascot Direction', 'Thriller Storytelling'],
+                    svg: `
+                        <svg class="w-full h-32" viewBox="0 0 380 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="16" y="22" width="104" height="86" rx="10" stroke="currentColor" stroke-opacity="0.45" fill="currentColor" fill-opacity="0.04"/>
+                            <text x="28" y="50" fill="currentColor" font-family="JetBrains Mono" font-size="9.5" font-weight="700">FILM 01 (60s)</text>
+                            <text x="28" y="67" fill="#0284C7" font-family="JetBrains Mono" font-size="8">Store Splash 3D</text>
+                            <text x="28" y="83" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="7.5">Mascot Adventure</text>
+                            <line x1="120" y1="65" x2="150" y2="65" stroke="#0284C7" stroke-width="2" class="svg-packet-flow"/>
+                            <rect x="150" y="22" width="104" height="86" rx="10" stroke="#02396E" stroke-width="1.8" fill="#02396E" fill-opacity="0.09"/>
+                            <text x="162" y="50" fill="currentColor" font-family="JetBrains Mono" font-size="9.5" font-weight="700">FILM 02 (60s)</text>
+                            <text x="162" y="67" fill="#38BDF8" font-family="JetBrains Mono" font-size="8">Last Phone Call</text>
+                            <text x="162" y="83" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="7.5">Suspense Thriller</text>
+                            <line x1="254" y1="65" x2="282" y2="65" stroke="#38BDF8" stroke-width="2" class="svg-packet-flow"/>
+                            <rect x="282" y="22" width="82" height="86" rx="10" stroke="#0284C7" stroke-width="1.6" fill="#0284C7" fill-opacity="0.07"/>
+                            <text x="294" y="56" fill="currentColor" font-family="JetBrains Mono" font-size="9" font-weight="700">FLOW + VEO</text>
+                            <text x="294" y="74" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="8">Multi-Scene</text>
+                        </svg>
+                    `
+                },
+                {
+                    num: '14',
+                    category: 'web',
+                    title: 'FHI GLOBAL & WEB SUITE',
+                    subtitle: 'Enterprise Real Estate & Collaborative Web Systems',
+                    langBadge: 'PHP · JS',
+                    repoUrl: 'https://github.com/EdJaymarPilapil?tab=repositories',
+                    repoLabel: 'EdJaymarPilapil Repositories',
+                    stackShort: 'PHP · JavaScript · Git · MySQL',
+                    role: 'Frontend / Web Developer Intern',
+                    metrics: [
+                        { label: 'COMPANY', val: 'Filipino Homes' },
+                        { label: 'REPO', val: 'fhi-global' },
+                        { label: 'WORKFLOW', val: 'Git Collaboration' }
+                    ],
+                    summary: 'Production frontend and web engineering contributions to fhi-global during my internship at Filipino Homes, paired with modular PHP, JavaScript, and MySQL web utilities.',
+                    bullets: [
+                        'Contributed production commits, responsive UI layouts, and interactive JavaScript modules to the fhi-global repository.',
+                        'Built companion modular web tools backed by PHP and MySQL.',
+                        'Collaborated smoothly with senior developers using structured Git branching and code reviews.'
+                    ],
+                    stack: ['PHP', 'JavaScript', 'Git', 'MySQL', 'fhi-global', 'Responsive UI'],
+                    svg: `
+                        <svg class="w-full h-32" viewBox="0 0 380 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="18" y="20" width="166" height="90" rx="10" stroke="#02396E" stroke-width="1.8" fill="#02396E" fill-opacity="0.09"/>
+                            <rect x="30" y="32" width="142" height="15" rx="4" fill="#02396E" fill-opacity="0.22"/>
+                            <rect x="30" y="54" width="66" height="44" rx="6" stroke="#0284C7" stroke-width="1.4"/>
+                            <rect x="104" y="54" width="68" height="44" rx="6" stroke="currentColor" stroke-opacity="0.4"/>
+                            <line x1="184" y1="65" x2="220" y2="65" stroke="#0284C7" stroke-width="2" class="svg-packet-flow"/>
+                            <rect x="220" y="20" width="142" height="90" rx="10" stroke="currentColor" stroke-opacity="0.4" fill="currentColor" fill-opacity="0.04"/>
+                            <text x="234" y="46" fill="#0284C7" font-family="JetBrains Mono" font-size="9.5" font-weight="700">FHI-GLOBAL</text>
+                            <text x="234" y="65" fill="currentColor" font-family="JetBrains Mono" font-size="8.5">PHP + JS + MySQL</text>
+                            <text x="234" y="83" fill="currentColor" fill-opacity="0.65" font-family="JetBrains Mono" font-size="8">Git Team Commits</text>
+                        </svg>
+                    `
+                }
+            ];
+
+            /* ----------------------------------------------------------------------
+               B. WEB AUDIO API SYNTHESIZED MICRO-CLICK ENGINE (MUTED BY DEFAULT)
+               ---------------------------------------------------------------------- */
+            let audioEnabled = false;
+            let audioCtx = null;
+
+            function playMicroTick(freq = 640, duration = 0.03) {
+                if (!audioEnabled) return;
+                try {
+                    if (!audioCtx) {
+                        const AudioContext = window.AudioContext || window.webkitAudioContext;
+                        audioCtx = new AudioContext();
+                    }
+                    if (audioCtx.state === 'suspended') {
+                        audioCtx.resume();
+                    }
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(140, audioCtx.currentTime + duration);
+                    gain.gain.setValueAtTime(0.035, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + duration);
+                } catch (err) {
+                    // Fail silently if audio context blocked
+                }
+            }
+
+            const audioToggleBtn = document.getElementById('audio-toggle');
+            const audioIcon = document.getElementById('audio-icon');
+            audioToggleBtn.addEventListener('click', () => {
+                audioEnabled = !audioEnabled;
+                audioIcon.textContent = audioEnabled ? '🔊' : '🔇';
+                audioToggleBtn.classList.toggle('border-cyanpulse', audioEnabled);
+                if (audioEnabled) {
+                    playMicroTick(780, 0.045);
+                    showToast('Tactile UI audio enabled');
+                } else {
+                    showToast('Tactile UI audio muted');
+                }
+            });
+
+            /* ----------------------------------------------------------------------
+               C. SUB-SECOND MECHANICAL PRELOADER
+               ---------------------------------------------------------------------- */
+            const preloader = document.getElementById('preloader');
+            const preloaderCounter = document.getElementById('preloader-counter');
+            const preloaderBar = document.getElementById('preloader-bar');
+            let bootProgress = 0;
+
+            const bootTimer = setInterval(() => {
+                bootProgress += Math.floor(Math.random() * 18) + 12;
+                if (bootProgress >= 100) {
+                    bootProgress = 100;
+                    clearInterval(bootTimer);
+                    preloaderCounter.textContent = '100%';
+                    preloaderBar.style.width = '100%';
+                    setTimeout(() => {
+                        preloader.classList.add('dismissed');
+                        document.body.classList.add('loaded');
+                    }, 180);
+                } else {
+                    preloaderCounter.textContent = String(bootProgress).padStart(3, '0') + '%';
+                    preloaderBar.style.width = bootProgress + '%';
+                }
+            }, 38);
+
+            /* ----------------------------------------------------------------------
+               D. DUAL THEME MODE: CAD X-RAY TOGGLE + CMD/CTRL + K SHORTCUT
+               ---------------------------------------------------------------------- */
+            const htmlEl = document.documentElement;
+            const xrayToggleBtn = document.getElementById('xray-toggle');
+            const xrayLabel = document.getElementById('xray-label');
+            const xrayDot = document.getElementById('xray-dot');
+
+            function setXrayMode(enabled) {
+                htmlEl.classList.toggle('cad-xray', enabled);
+                htmlEl.classList.toggle('dark', enabled);
+                xrayLabel.textContent = enabled ? 'CAD X-RAY: ON' : 'CAD X-RAY: OFF';
+                xrayDot.className = enabled
+                    ? 'w-2 h-2 rounded-full bg-skywire shadow-[0_0_8px_#38BDF8]'
+                    : 'w-2 h-2 rounded-full bg-cobalt';
+                playMicroTick(enabled ? 860 : 520, 0.04);
+            }
+
+            xrayToggleBtn.addEventListener('click', () => {
+                const nextState = !htmlEl.classList.contains('cad-xray');
+                setXrayMode(nextState);
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+                    e.preventDefault();
+                    setXrayMode(!htmlEl.classList.contains('cad-xray'));
+                } else if (e.key === 'Escape') {
+                    closeDossier();
+                }
+            });
+
+            /* ----------------------------------------------------------------------
+               E. LIVE CEBU CITY (ASIA/MANILA PHT) CLOCK & HUD CURSOR COORDINATES
+               ---------------------------------------------------------------------- */
+            const clockEl = document.getElementById('cebu-clock');
+            const coordsEl = document.getElementById('hud-coords');
+
+            function updateCebuClock() {
+                try {
+                    const now = new Date();
+                    const formatted = new Intl.DateTimeFormat('en-GB', {
+                        timeZone: 'Asia/Manila',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                        hour12: false
+                    }).format(now);
+                    if (clockEl) clockEl.textContent = formatted + ' PHT';
+                } catch (e) {
+                    if (clockEl) clockEl.textContent = 'ASIA/MANILA PHT';
+                }
+            }
+            updateCebuClock();
+            setInterval(updateCebuClock, 1000);
+
+            let pointerX = window.innerWidth / 2;
+            let pointerY = window.innerHeight / 2;
+
+            window.addEventListener('pointermove', (e) => {
+                pointerX = e.clientX;
+                pointerY = e.clientY;
+                if (coordsEl) {
+                    const xStr = String(Math.round(pointerX)).padStart(4, '0');
+                    const yStr = String(Math.round(pointerY)).padStart(4, '0');
+                    coordsEl.textContent = `X:${xStr} Y:${yStr}`;
+                }
+            }, { passive: true });
+
+            /* ----------------------------------------------------------------------
+               F. CLIPBOARD COPY & NON-INTRUSIVE TOAST
+               ---------------------------------------------------------------------- */
+            const toastBox = document.getElementById('toast-box');
+            const toastText = document.getElementById('toast-text');
+            let toastTimer = null;
+
+            function showToast(msg) {
+                toastText.textContent = msg;
+                toastBox.classList.remove('opacity-0', 'translate-y-3');
+                clearTimeout(toastTimer);
+                toastTimer = setTimeout(() => {
+                    toastBox.classList.add('opacity-0', 'translate-y-3');
+                }, 2400);
+            }
+
+            function copyTextFallback(text, label) {
+                try {
+                    const textarea = document.createElement('textarea');
+                    textarea.value = text;
+                    textarea.setAttribute('readonly', '');
+                    textarea.style.position = 'fixed';
+                    textarea.style.opacity = '0';
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                    playMicroTick(820, 0.04);
+                    showToast(`${label} copied: ${text}`);
+                } catch (err) {
+                    showToast(`Unable to copy ${label}`);
+                }
+            }
+
+            document.getElementById('hero-copy-email').addEventListener('click', () => {
+                copyTextFallback('edjaymar17@gmail.com', 'Email');
+            });
+
+            document.querySelectorAll('.copy-btn').forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    const val = btn.getAttribute('data-copy');
+                    const lbl = btn.getAttribute('data-label') || 'Value';
+                    copyTextFallback(val, lbl);
+                });
+            });
+
+            /* ----------------------------------------------------------------------
+               G. INTERACTIVE 3D ISOMETRIC WIREFRAME CORE (HTML5 2D CANVAS)
+                  Morphs across 4 Topologies: Data, Web, IoT, AI
+               ---------------------------------------------------------------------- */
+            const canvas = document.getElementById('wireframe-canvas');
+            const ctx = canvas.getContext('2d');
+            const stage = document.getElementById('polyhedron-stage');
+            const morphReadout = document.getElementById('morph-readout');
+            const vertexReadout = document.getElementById('vertex-readout');
+
+            // Generate 14 vertices for each of the 4 disciplines so interpolation is 100% smooth
+            function generateTopologyVertices(mode) {
+                const pts = [];
+                if (mode === 'data') {
+                    // Dual-ring Analytical Octahedron / Data Matrix (14 vertices)
+                    pts.push([0, -1.25, 0], [0, 1.25, 0]);
+                    for (let i = 0; i < 6; i++) {
+                        const a = (i / 6) * Math.PI * 2;
+                        pts.push([Math.cos(a) * 1.15, -0.25, Math.sin(a) * 1.15]);
+                        pts.push([Math.cos(a + Math.PI / 6) * 0.85, 0.45, Math.sin(a + Math.PI / 6) * 0.85]);
+                    }
+                } else if (mode === 'web') {
+                    // Architectural Isometric Cube + Inner Core (14 vertices)
+                    const s = 0.88;
+                    const c = 0.42;
+                    pts.push(
+                        [-s, -s, -s], [s, -s, -s], [s, s, -s], [-s, s, -s],
+                        [-s, -s, s], [s, -s, s], [s, s, s], [-s, s, s],
+                        [0, -c * 2.2, 0], [0, c * 2.2, 0],
+                        [-c * 2.2, 0, 0], [c * 2.2, 0, 0],
+                        [0, 0, -c * 2.2], [0, 0, c * 2.2]
+                    );
+                } else if (mode === 'iot') {
+                    // 2-Axis X+Z Gantry & Sensor Array Prism (14 vertices)
+                    pts.push(
+                        [-1.1, -0.75, -0.65], [1.1, -0.75, -0.65], [1.1, 0.75, -0.65], [-1.1, 0.75, -0.65],
+                        [-1.1, -0.75, 0.65], [1.1, -0.75, 0.65], [1.1, 0.75, 0.65], [-1.1, 0.75, 0.65],
+                        [-0.55, 0, -0.95], [0.55, 0, -0.95], [0.55, 0, 0.95], [-0.55, 0, 0.95],
+                        [0, -1.05, 0], [0, 1.05, 0]
+                    );
+                } else {
+                    // AI Cinema & Unity Orbital Icosa-Sphere (14 vertices)
+                    pts.push([0, -1.2, 0], [0, 1.2, 0]);
+                    for (let i = 0; i < 12; i++) {
+                        const a = (i / 12) * Math.PI * 2;
+                        const y = Math.sin(i * 1.1) * 0.65;
+                        const r = Math.cos(y * 0.85) * 1.15;
+                        pts.push([Math.cos(a) * r, y, Math.sin(a) * r]);
+                    }
+                }
+                return pts;
+            }
+
+            // Connect vertices within distance threshold for clean geometric wireframe edges
+            function computeEdges(verts) {
+                const edges = [];
+                for (let i = 0; i < verts.length; i++) {
+                    for (let j = i + 1; j < verts.length; j++) {
+                        const dx = verts[i][0] - verts[j][0];
+                        const dy = verts[i][1] - verts[j][1];
+                        const dz = verts[i][2] - verts[j][2];
+                        const dist = Math.hypot(dx, dy, dz);
+                        if (dist < 1.62) {
+                            edges.push([i, j]);
+                        }
+                    }
+                }
+                return edges;
+            }
+
+            let currentMode = 'data';
+            let currentVerts = generateTopologyVertices('data');
+            let targetVerts = generateTopologyVertices('data');
+            let currentEdges = computeEdges(targetVerts);
+
+            let rotX = 0.35;
+            let rotY = 0.55;
+            let velX = 0.004;
+            let velY = 0.008;
+            let isDragging = false;
+            let lastDragX = 0;
+            let lastDragY = 0;
+            const ripples = [];
+
+            function resizeWireframeCanvas() {
+                if (!stage || !canvas) return;
+                const rect = stage.getBoundingClientRect();
+                const dpr = Math.min(window.devicePixelRatio || 1, 2);
+                canvas.width = rect.width * dpr;
+                canvas.height = rect.height * dpr;
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            }
+
+            window.addEventListener('resize', resizeWireframeCanvas);
+            resizeWireframeCanvas();
+
+            stage.addEventListener('pointerdown', (e) => {
+                isDragging = true;
+                lastDragX = e.clientX;
+                lastDragY = e.clientY;
+            });
+
+            window.addEventListener('pointermove', (e) => {
+                if (!isDragging) return;
+                const dx = e.clientX - lastDragX;
+                const dy = e.clientY - lastDragY;
+                rotY += dx * 0.009;
+                rotX += dy * 0.009;
+                velY = dx * 0.0012;
+                velX = dy * 0.0012;
+                lastDragX = e.clientX;
+                lastDragY = e.clientY;
+            }, { passive: true });
+
+            window.addEventListener('pointerup', () => {
+                isDragging = false;
+            });
+
+            stage.addEventListener('click', () => {
+                ripples.push({ r: 12, alpha: 0.85 });
+                velY += 0.025;
+                playMicroTick(720, 0.04);
+            });
+
+            // Discipline Morph Buttons (also optionally filter works or highlight discipline)
+            const morphLabels = {
+                data: 'DATA_OCTAHEDRON_MATRIX',
+                web: 'FULLSTACK_ISOMETRIC_CUBE',
+                iot: 'IOT_2AXIS_GANTRY_CHASSIS',
+                ai: 'AI_CINEMA_UNITY_ORBITAL'
+            };
+
+            document.querySelectorAll('.morph-btn').forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    const mode = btn.getAttribute('data-morph');
+                    currentMode = mode;
+                    targetVerts = generateTopologyVertices(mode);
+                    currentEdges = computeEdges(targetVerts);
+                    morphReadout.textContent = morphLabels[mode] || 'WIREFRAME_CORE';
+                    vertexReadout.textContent = `V:${targetVerts.length} E:${currentEdges.length}`;
+                    ripples.push({ r: 14, alpha: 0.85 });
+                    playMicroTick(760, 0.04);
+
+                    document.querySelectorAll('.morph-btn').forEach((b) => {
+                        b.classList.remove('active', 'bg-cobalt', 'text-white', 'dark:bg-skywire', 'dark:text-deepspace');
+                        b.classList.add('text-muted');
+                    });
+                    btn.classList.add('active', 'bg-cobalt', 'text-white', 'dark:bg-skywire', 'dark:text-deepspace');
+                    btn.classList.remove('text-muted');
+                });
+            });
+
+            function renderWireframeLoop() {
+                const rect = stage.getBoundingClientRect();
+                const w = rect.width;
+                const h = rect.height;
+                ctx.clearRect(0, 0, w, h);
+
+                const isXray = htmlEl.classList.contains('cad-xray');
+                const strokePrimary = isXray ? '#38BDF8' : '#02396E';
+                const strokeSecondary = isXray ? '#0EA5E9' : '#0284C7';
+
+                // Smoothly interpolate vertex positions toward target topology
+                for (let i = 0; i < currentVerts.length; i++) {
+                    currentVerts[i][0] += (targetVerts[i][0] - currentVerts[i][0]) * 0.1;
+                    currentVerts[i][1] += (targetVerts[i][1] - currentVerts[i][1]) * 0.1;
+                    currentVerts[i][2] += (targetVerts[i][2] - currentVerts[i][2]) * 0.1;
+                }
+
+                if (!isDragging) {
+                    rotY += velY;
+                    rotX += velX;
+                    velY += (0.0065 - velY) * 0.03;
+                    velX += (0.0022 - velX) * 0.03;
+                }
+
+                const cx = w / 2;
+                const cy = h / 2;
+                const scale = Math.min(w, h) * 0.27;
+
+                // Subtle Concentric Calibration Ring
+                ctx.beginPath();
+                ctx.arc(cx, cy, scale * 1.32, 0, Math.PI * 2);
+                ctx.strokeStyle = isXray ? 'rgba(56, 189, 248, 0.16)' : 'rgba(2, 57, 110, 0.1)';
+                ctx.lineWidth = 1;
+                ctx.setLineDash([4, 4]);
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                // Click Velocity Ripples
+                for (let r = ripples.length - 1; r >= 0; r--) {
+                    const rip = ripples[r];
+                    rip.r += 3.8;
+                    rip.alpha *= 0.94;
+                    ctx.beginPath();
+                    ctx.arc(cx, cy, rip.r, 0, Math.PI * 2);
+                    ctx.strokeStyle = isXray
+                        ? `rgba(56, 189, 248, ${rip.alpha})`
+                        : `rgba(2, 132, 199, ${rip.alpha})`;
+                    ctx.lineWidth = 1.5;
+                    ctx.stroke();
+                    if (rip.alpha < 0.02) ripples.splice(r, 1);
+                }
+
+                // 3D Rotation & Perspective Projection
+                const cosY = Math.cos(rotY);
+                const sinY = Math.sin(rotY);
+                const cosX = Math.cos(rotX);
+                const sinX = Math.sin(rotX);
+
+                const projected = currentVerts.map(([x, y, z]) => {
+                    const x1 = x * cosY - z * sinY;
+                    const z1 = z * cosY + x * sinY;
+                    const y2 = y * cosX - z1 * sinX;
+                    const z2 = z1 * cosX + y * sinX;
+                    const fov = 3.6 / (3.6 + z2);
+                    return {
+                        px: cx + x1 * scale * fov,
+                        py: cy + y2 * scale * fov,
+                        z: z2
+                    };
+                });
+
+                // Draw Wireframe Edges
+                currentEdges.forEach(([i, j]) => {
+                    const a = projected[i];
+                    const b = projected[j];
+                    const avgZ = (a.z + b.z) * 0.5;
+                    ctx.beginPath();
+                    ctx.moveTo(a.px, a.py);
+                    ctx.lineTo(b.px, b.py);
+                    ctx.strokeStyle = avgZ < 0 ? strokePrimary : strokeSecondary;
+                    ctx.globalAlpha = avgZ < 0 ? 0.85 : 0.35;
+                    ctx.lineWidth = avgZ < 0 ? 1.5 : 1;
+                    ctx.stroke();
+                });
+
+                // Draw Vertex Nodes
+                ctx.globalAlpha = 1;
+                projected.forEach((p) => {
+                    const radius = p.z < 0 ? 3.2 : 2.1;
+                    ctx.beginPath();
+                    ctx.arc(p.px, p.py, radius, 0, Math.PI * 2);
+                    ctx.fillStyle = p.z < 0 ? strokeSecondary : strokePrimary;
+                    ctx.fill();
+                });
+
+                requestAnimationFrame(renderWireframeLoop);
+            }
+
+            /* ----------------------------------------------------------------------
+               H. ARCHITECTURAL WORKS INDEX RENDERING, FILTERING, HOVER PORTAL & DOSSIER
+               ---------------------------------------------------------------------- */
+            const worksListEl = document.getElementById('works-index-list');
+            const hoverPortal = document.getElementById('hover-portal');
+            const portalCode = document.getElementById('portal-code');
+            const portalSvgContainer = document.getElementById('portal-svg-container');
+            const portalRole = document.getElementById('portal-role');
+
+            let activeFilter = 'all';
+            let activeDossierIndex = 0;
+
+            // Spring-physics tracking for Floating Hover Portal
+            let portalTargetX = 0;
+            let portalTargetY = 0;
+            let portalCurrX = 0;
+            let portalCurrY = 0;
+            let portalVisible = false;
+
+            function animatePortal() {
+                if (portalVisible) {
+                    portalCurrX += (portalTargetX - portalCurrX) * 0.16;
+                    portalCurrY += (portalTargetY - portalCurrY) * 0.16;
+                    const tiltX = Math.max(-6, Math.min(6, (portalTargetX - portalCurrX) * 0.08));
+                    hoverPortal.style.transform = `translate3d(${portalCurrX}px, ${portalCurrY}px, 0) rotate(${tiltX * 0.35}deg)`;
+                }
+                requestAnimationFrame(animatePortal);
+            }
+            animatePortal();
+
+            function renderWorksIndex(filter = 'all') {
+                activeFilter = filter;
+                const filtered = filter === 'all'
+                    ? WORKS
+                    : WORKS.filter((item) => item.category === filter);
+
+                worksListEl.innerHTML = filtered.map((work) => {
+                    const realIndex = WORKS.findIndex((w) => w.num === work.num);
+                    return `
+                        <article data-work-index="${realIndex}" tabindex="0" role="button"
+                                 aria-label="Inspect ${work.title} technical dossier"
+                                 class="work-row group py-5 sm:py-6 px-2 sm:px-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-pointer hover:bg-[var(--bg-surface)] transition-colors focus:outline-none focus:bg-[var(--bg-surface)]">
+                            <div class="flex items-baseline gap-4 sm:gap-7 min-w-0">
+                                <span class="font-mono text-xs sm:text-sm font-bold text-secondary-accent shrink-0">
+                                    ${work.num}
+                                </span>
+                                <div class="min-w-0">
+                                    <div class="flex flex-wrap items-center gap-2.5">
+                                        <h3 class="font-display font-extrabold text-xl sm:text-2xl lg:text-3xl tracking-tight uppercase group-hover:text-primary-accent transition-colors">
+                                            ${work.title}
+                                        </h3>
+                                        <span class="px-2 py-0.5 rounded-md border hairline surface-elevated font-mono text-[10px] font-bold text-primary-accent">
+                                            ${work.langBadge}
+                                        </span>
+                                    </div>
+                                    <p class="text-xs sm:text-sm text-muted mt-0.5">
+                                        ${work.subtitle}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between sm:justify-end gap-2.5 pl-8 sm:pl-0 shrink-0">
+                                <span class="font-mono text-[11px] text-muted hidden xl:inline-block max-w-[260px] truncate">
+                                    ${work.stackShort}
+                                </span>
+                                <a href="${work.repoUrl}" target="_blank" rel="noopener noreferrer"
+                                   title="Open ${work.repoLabel} on GitHub"
+                                   onclick="event.stopPropagation();"
+                                   class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg border hairline surface-elevated font-mono text-[10px] font-bold uppercase text-muted hover:text-primary-accent hover:border-cyanpulse transition-colors">
+                                    <span>Repo ↗</span>
+                                </a>
+                                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border hairline surface-card font-mono text-[11px] font-bold uppercase group-hover:border-cyanpulse group-hover:text-primary-accent transition-colors">
+                                    <span>Dossier</span>
+                                    <span class="transform group-hover:translate-x-0.5 transition-transform">→</span>
+                                </span>
+                            </div>
+                        </article>
+                    `;
+                }).join('');
+
+                // Attach row hover & click interactions
+                document.querySelectorAll('.work-row').forEach((row) => {
+                    const idx = Number(row.getAttribute('data-work-index'));
+                    const work = WORKS[idx];
+
+                    row.addEventListener('mouseenter', (e) => {
+                        portalCode.textContent = `SCHEMATIC // ${work.num}`;
+                        portalSvgContainer.innerHTML = work.svg;
+                        portalRole.textContent = work.role;
+                        portalTargetX = Math.min(window.innerWidth - 365, e.clientX + 26);
+                        portalTargetY = Math.max(80, Math.min(window.innerHeight - 250, e.clientY - 90));
+                        if (!portalVisible) {
+                            portalCurrX = portalTargetX;
+                            portalCurrY = portalTargetY;
+                        }
+                        portalVisible = true;
+                        hoverPortal.classList.add('visible');
+                        playMicroTick(580, 0.02);
+                    });
+
+                    row.addEventListener('mousemove', (e) => {
+                        portalTargetX = Math.min(window.innerWidth - 365, e.clientX + 26);
+                        portalTargetY = Math.max(80, Math.min(window.innerHeight - 250, e.clientY - 90));
+                    });
+
+                    row.addEventListener('mouseleave', () => {
+                        portalVisible = false;
+                        hoverPortal.classList.remove('visible');
+                    });
+
+                    row.addEventListener('click', () => {
+                        openDossier(idx);
+                    });
+
+                    row.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            openDossier(idx);
+                        }
+                    });
+                });
+            }
+
+            // Category Filter Pills
+            document.querySelectorAll('.filter-btn').forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    const f = btn.getAttribute('data-filter');
+                    document.querySelectorAll('.filter-btn').forEach((b) => {
+                        b.classList.remove('active', 'bg-cobalt', 'text-white', 'dark:bg-skywire', 'dark:text-deepspace');
+                        b.classList.add('border', 'hairline', 'surface-card', 'text-muted');
+                    });
+                    btn.classList.add('active', 'bg-cobalt', 'text-white', 'dark:bg-skywire', 'dark:text-deepspace');
+                    btn.classList.remove('border', 'hairline', 'surface-card', 'text-muted');
+                    renderWorksIndex(f);
+                    playMicroTick(690, 0.03);
+                });
+            });
+
+            /* ----------------------------------------------------------------------
+               I. SLIDE-OVER TECHNICAL DOSSIER DRAWER
+               ---------------------------------------------------------------------- */
+            const backdrop = document.getElementById('dossier-backdrop');
+            const drawer = document.getElementById('dossier-drawer');
+            const drawerNum = document.getElementById('drawer-num');
+            const drawerTitle = document.getElementById('drawer-title');
+            const drawerSubtitle = document.getElementById('drawer-subtitle');
+            const drawerSvg = document.getElementById('drawer-svg');
+            const drawerMetrics = document.getElementById('drawer-metrics');
+            const drawerRole = document.getElementById('drawer-role');
+            const drawerSummary = document.getElementById('drawer-summary');
+            const drawerBullets = document.getElementById('drawer-bullets');
+            const drawerStack = document.getElementById('drawer-stack');
+            const drawerRepoLink = document.getElementById('drawer-repo-link');
+
+            function populateDossier(index) {
+                activeDossierIndex = (index + WORKS.length) % WORKS.length;
+                const w = WORKS[activeDossierIndex];
+                drawerNum.textContent = `${w.num} / ${String(WORKS.length).padStart(2, '0')}`;
+                drawerTitle.textContent = w.title;
+                drawerSubtitle.textContent = w.subtitle;
+                drawerSvg.innerHTML = w.svg;
+                drawerRole.textContent = w.role;
+                drawerSummary.textContent = w.summary;
+                if (drawerRepoLink) {
+                    drawerRepoLink.href = w.repoUrl;
+                    drawerRepoLink.textContent = 'Open Repository ↗';
+                }
+
+                drawerMetrics.innerHTML = w.metrics.map((m) => `
+                    <div class="p-3 rounded-xl border hairline surface-elevated">
+                        <div class="font-mono text-[9px] text-muted uppercase">${m.label}</div>
+                        <div class="font-mono text-xs font-bold text-primary-accent mt-0.5">${m.val}</div>
+                    </div>
+                `).join('');
+
+                drawerBullets.innerHTML = w.bullets.map((b) => `
+                    <li class="flex items-start gap-2.5">
+                        <span class="font-mono text-secondary-accent font-bold mt-0.5">▹</span>
+                        <span>${b}</span>
+                    </li>
+                `).join('');
+
+                drawerStack.innerHTML = w.stack.map((tag) => `
+                    <span class="px-2.5 py-1 rounded-md border hairline surface-elevated font-semibold">${tag}</span>
+                `).join('');
+            }
+
+            function openDossier(index) {
+                populateDossier(index);
+                portalVisible = false;
+                hoverPortal.classList.remove('visible');
+                backdrop.classList.add('open');
+                drawer.classList.add('open');
+                document.body.style.overflow = 'hidden';
+                playMicroTick(780, 0.04);
+            }
+
+            function closeDossier() {
+                backdrop.classList.remove('open');
+                drawer.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            document.getElementById('drawer-close').addEventListener('click', closeDossier);
+            backdrop.addEventListener('click', (e) => {
+                if (e.target === backdrop) closeDossier();
+            });
+            document.getElementById('drawer-prev').addEventListener('click', () => {
+                populateDossier(activeDossierIndex - 1);
+                playMicroTick(640, 0.03);
+            });
+            document.getElementById('drawer-next').addEventListener('click', () => {
+                populateDossier(activeDossierIndex + 1);
+                playMicroTick(680, 0.03);
+            });
+
+            /* ----------------------------------------------------------------------
+               J. INTERSECTION OBSERVER FOR SCROLL REVEALS & WINDOW ONLOAD INIT
+               ---------------------------------------------------------------------- */
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+
+            document.querySelectorAll('.reveal-up').forEach((el) => revealObserver.observe(el));
+
+            // Initial Render
+            renderWorksIndex('all');
+
+            window.onload = function () {
+                resizeWireframeCanvas();
+                renderWireframeLoop();
+            };
+        })();
+    </script>
+</body>
+</html>
